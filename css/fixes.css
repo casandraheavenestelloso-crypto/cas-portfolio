@@ -1,0 +1,9 @@
+/* Form declarations kept separate to make customization straightforward. */ input,textarea {
+  background:#0c0b0d;
+  border:1px solid #39323d;
+  border-radius:.5rem;
+  color:#f2f2f2;
+  font:inherit;
+  padding:.8rem;
+  width:100%
+}
