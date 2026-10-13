@@ -11,14 +11,17 @@ textarea {
 }
 
 html[data-theme="light"] {
-  --black: #f7f5f7;
-  --white: #171217;
-  --gray: #5f5963;
-  --line: #d9d2db;
+  --black: #fcfafc;
+  --white: #1b151d;
+  --gray: #68616b;
+  --ink: #1b151d;
+  --line: #e1d9e3;
 }
 
 html[data-theme="light"] .site-header {
-  background: rgb(247 245 247 / 88%);
+  background: rgb(252 250 252 / 96%);
+  border-bottom: 1px solid #eee8ef;
+  box-shadow: 0 8px 22px rgb(46 25 49 / 7%);
 }
 
 html[data-theme="light"] .skill,
@@ -26,11 +29,39 @@ html[data-theme="light"] .contact-form,
 html[data-theme="light"] .about-cta {
   background: #fff;
   border-color: #ded7e0;
+  box-shadow: 0 12px 35px #5e37600a;
 }
 
 html[data-theme="light"] .values,
 html[data-theme="light"] .site-footer {
-  background: #eae5ea;
+  background: #f2edf3;
+}
+
+html[data-theme="light"] .project-template {
+  background: #fff;
+  border-color: #ded7e0;
+}
+
+html[data-theme="light"] .project-template:hover,
+html[data-theme="light"] .project-template:focus-visible {
+  box-shadow: 0 18px 42px #7e418826;
+}
+
+html[data-theme="light"] .project-template img,
+html[data-theme="light"] .project-template video,
+html[data-theme="light"] .project-detail-media img,
+html[data-theme="light"] .project-detail-media video {
+  background: #f2edf3;
+}
+
+html[data-theme="light"] .tool-category-tab:hover,
+html[data-theme="light"] .tool-category-tab:focus-visible,
+html[data-theme="light"] .tool-category-tab.is-active {
+  color: #1b151d;
+}
+
+html[data-theme="light"] .copyright {
+  border-top-color: #ded7e0;
 }
 
 html[data-theme="light"] input,

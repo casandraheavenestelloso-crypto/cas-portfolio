@@ -265,7 +265,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const animateTrack = (from, to) => {
-      const duration = 1550;
+      const duration = 360;
       const startTime = performance.now();
       const ease = (progress) => (
         progress < 0.5
@@ -333,7 +333,7 @@ document.addEventListener('DOMContentLoaded', () => {
         slideUnlock = window.setTimeout(() => {
           lastOffset = offset;
           finishSlide();
-        }, 1750);
+        }, 460);
       }
     };
 
@@ -411,7 +411,7 @@ document.addEventListener('DOMContentLoaded', () => {
         show(current);
       }
 
-      pauseAutoplay(12000);
+      pauseAutoplay(autoplayDelay);
     };
 
     carouselWindow.addEventListener('pointerup', endDrag);
