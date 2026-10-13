@@ -1,4 +1,11 @@
 /* Form styles and responsive behavior kept separate from the design foundation. */
+/* Keep off-canvas navigation and carousel transforms from widening mobile pages. */
+html,
+body {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
 input,
 textarea {
   background: #0c0b0d;
@@ -32,6 +39,10 @@ html[data-theme="light"] .about-cta {
   box-shadow: 0 12px 35px #5e37600a;
 }
 
+html[data-theme="light"] .about-image img {
+  box-shadow: 0 24px 52px rgb(72 36 77 / 18%);
+}
+
 html[data-theme="light"] .values,
 html[data-theme="light"] .site-footer {
   background: #f2edf3;
@@ -58,6 +69,11 @@ html[data-theme="light"] .tool-category-tab:hover,
 html[data-theme="light"] .tool-category-tab:focus-visible,
 html[data-theme="light"] .tool-category-tab.is-active {
   color: #1b151d;
+}
+
+html[data-theme="light"] .skill-icon-list span b {
+  background: var(--pink);
+  color: #160d17;
 }
 
 html[data-theme="light"] .copyright {

@@ -213,7 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const beforeClones = originalCards.map((card) => card.cloneNode(true));
     const afterClones = originalCards.map((card) => card.cloneNode(true));
     let current = originalCards.length;
-    const autoplayDelay = 1000;
+    const autoplayDelay = 5000;
     let autoplay;
     let autoplayResume;
     let isSliding = false;

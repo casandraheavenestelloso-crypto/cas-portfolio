@@ -693,12 +693,12 @@ h1 span,h2 span {
   font-weight:800;
   height:2.35rem;
   justify-content:center;
+  transition:transform .25s;
   width:2.35rem
 }
 .tool-label {
   background:var(--pink);
   border-radius:99px;
-  bottom:.65rem;
   color:#160d17;
   font-size:.57rem;
   font-weight:800;
@@ -710,7 +710,8 @@ h1 span,h2 span {
   pointer-events:none;
   position:absolute;
   text-align:center;
-  transform:translate(-50%,5px);
+  top:.45rem;
+  transform:translate(-50%,-5px);
   transition:opacity .2s ease,transform .2s ease;
   white-space:normal;
   z-index:2
@@ -718,8 +719,11 @@ h1 span,h2 span {
 .tool-list div:hover {
   background:#e652ed12
 }
-.tool-list div:hover i {
-  transform:translateY(-5px) scale(1.08)
+.tool-list div:hover i,
+.tool-list div:focus-visible i,
+.tool-list div:hover .tool-monogram,
+.tool-list div:focus-visible .tool-monogram {
+  transform:translateY(14px) scale(1.08)
 }
 .tool-list div:hover .tool-label,
 .tool-list div:focus-visible .tool-label {
@@ -792,8 +796,9 @@ h1 span,h2 span {
   position:relative
 }
 .about-image img {
+  aspect-ratio:1;
   border-radius:var(--radius);
-  max-height:600px;
+  box-shadow:0 24px 52px rgb(0 0 0 / 42%);
   object-fit:cover;
   width:100%
 }
