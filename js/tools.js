@@ -2,11 +2,12 @@
 const toolGroups = [
   {
     id: 'growth', label: 'Growth, CRM & Email',
-    description: 'Search visibility, measurement, forms, and customer communication.',
+    description: 'Search visibility, measurement, forms, scheduling, and customer communication.',
     tools: [
       ['Technical SEO', 'fa-solid fa-magnifying-glass-chart'], ['GEO', 'fa-solid fa-earth-americas'],
       ['Google Tag Manager', 'fa-solid fa-tags', 'GTM'], ['Google Analytics', 'fa-solid fa-chart-line', 'GA'],
-      ['Klaviyo', '', 'K'], ['MailerLite', '', 'M'], ['Web3Forms', 'fa-solid fa-file-lines'], ['Email Flows', 'fa-solid fa-envelope-open-text'],
+      ['Klaviyo', '', 'K'], ['MailerLite', '', 'M'], ['Web3Forms', 'fa-solid fa-file-lines'], ['Calendly', 'fa-solid fa-calendar-days'],
+      ['SMTP', 'fa-solid fa-server'], ['Mailgun', 'fa-solid fa-paper-plane', 'M'], ['Email Flows', 'fa-solid fa-envelope-open-text'],
     ],
   },
   {
@@ -21,11 +22,11 @@ const toolGroups = [
   },
   {
     id: 'infrastructure', label: 'Hosting & Infrastructure',
-    description: 'Version control, deployment, cloud hosting, and protection.',
+    description: 'Version control, deployment, cloud services, hosting, and protection.',
     tools: [
       ['Cloudflare', 'fa-solid fa-cloud', 'C'], ['GitHub', 'fa-brands fa-github'], ['Vercel', 'fa-solid fa-play', 'V'],
       ['Heroku', 'fa-solid fa-h', 'H'], ['DigitalOcean / Droplets', 'fa-solid fa-droplet', 'DO'], ['Railway', 'fa-solid fa-train-subway', 'R'],
-      ['Render', 'fa-solid fa-server', 'R'], ['GoDaddy', 'fa-solid fa-globe', 'G'],
+      ['Render', 'fa-solid fa-server', 'R'], ['Firebase', 'fa-solid fa-fire', 'F'], ['GoDaddy', 'fa-solid fa-globe', 'G'],
     ],
   },
 ];
