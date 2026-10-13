@@ -132,6 +132,11 @@ textarea:focus {
     min-height:calc(100svh - var(--header-offset));
   }
 
+  /* About content varies in length; allow its detailed sections to grow instead of overlapping. */
+  body[data-page="about"] main > section:not(.page-hero) {
+    height:auto;
+  }
+
   .projects-section {
     align-content: center;
     display: grid;

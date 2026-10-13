@@ -213,6 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const beforeClones = originalCards.map((card) => card.cloneNode(true));
     const afterClones = originalCards.map((card) => card.cloneNode(true));
     let current = originalCards.length;
+    const autoplayDelay = 3500;
     let autoplay;
     let autoplayResume;
     let isSliding = false;
@@ -341,7 +342,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const restartAutoplay = () => {
       window.clearInterval(autoplay);
       window.clearTimeout(autoplayResume);
-      autoplay = window.setInterval(() => move(1), 5000);
+      autoplay = window.setInterval(() => move(1), autoplayDelay);
     };
 
     const pauseAutoplay = (resumeDelay = 0) => {
