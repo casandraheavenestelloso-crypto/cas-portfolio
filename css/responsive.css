@@ -107,24 +107,25 @@ textarea:focus {
 /* Desktop presentation mode: one main section per viewport scroll. */
 @media (min-width: 769px) {
   html {
-    scroll-padding-top: 82px;
-    scroll-snap-type: y mandatory;
+    --header-offset:82px;
+    scroll-padding-top: var(--header-offset);
+    scroll-snap-type: none;
   }
 
   main > section {
-    min-height: calc(100svh - 82px);
+    min-height: calc(100svh - var(--header-offset));
     scroll-snap-align: start;
-    scroll-snap-stop: always;
+    scroll-margin-top: var(--header-offset);
   }
 
   .site-footer {
     scroll-snap-align: start;
-    scroll-snap-stop: always;
+    scroll-margin-top: var(--header-offset);
   }
 
   .hero,
   .page-hero {
-    min-height: calc(100svh - 82px);
+    min-height: calc(100svh - var(--header-offset));
   }
 
   .projects-section {
@@ -134,47 +135,135 @@ textarea:focus {
     overflow-y: visible;
     padding: clamp(2.5rem, 4vw, 4rem) 0;
   }
+
+  .projects-section .container {
+    transform: translateY(clamp(2rem, 5vh, 4rem));
+  }
+
+  .contact-page {
+    min-height: calc(100svh - var(--header-offset));
+    padding-block: clamp(2.5rem, 6vw, 5rem);
+  }
 }
 
 @media (max-width: 700px) {
-  .nav-menu { background: var(--black); box-shadow: 0 16px 35px #0008; display: none; left: 1.25rem; margin-left: 0; padding: 1rem; position: absolute; right: 1.25rem; text-align: center; top: 4.5rem; transform: none; }
-  .nav-menu.open { display: grid; }
-  .nav-links { display: grid; gap: 1rem; }
-  .theme-toggle { justify-self: center; left: auto; margin: .3rem 0 0; position: static; }
-  .menu-toggle { display: block; margin-left: auto; }
-  .hero { grid-template-columns: 1fr; min-height: unset; padding: 4rem 0; display: flex; flex-direction: column-reverse;}
-  .portrait-stack { min-height: 380px; }
+  :root {
+    --container:min(100% - 2rem,640px);
+    --space:clamp(3rem,12vw,4.5rem);
+  }
+  body.nav-open { overflow: hidden; }
+  .site-header { padding:1rem 0; }
+  .nav-menu {
+    align-items:flex-end;
+    background:var(--black);
+    box-shadow:-18px 0 45px #0008;
+    display:flex;
+    flex-direction:column;
+    gap:1.6rem;
+    height:100dvh;
+    justify-content:flex-start;
+    margin-left:0;
+    max-width:340px;
+    opacity:0;
+    padding:6.25rem 1.6rem 2rem;
+    pointer-events:none;
+    position:fixed;
+    right:0;
+    text-align:right;
+    top:0;
+    transform:translateX(105%);
+    transition:
+      transform .38s cubic-bezier(.2,.8,.2,1),
+      opacity .24s ease;
+    width:min(82vw,340px);
+    z-index:22;
+  }
+  .nav-menu.open {
+    opacity:1;
+    pointer-events:auto;
+    transform:translateX(0);
+  }
+  .nav-links {
+    align-items:flex-end;
+    display:grid;
+    gap:1.35rem;
+    justify-items:end;
+    width:100%;
+  }
+  .nav-links a { font-size:1.05rem; }
+  .nav-links a:after {
+    left:auto;
+    right:0;
+    transform-origin:right;
+  }
+  .theme-toggle { justify-self:end; left:auto; margin:0; position:static; }
+  .menu-toggle { display: block; margin-left: auto; position:relative; z-index:24; }
+  h1 { font-size:clamp(2.8rem,14vw,4.4rem); margin-bottom:1rem; }
+  h2 { font-size:clamp(2.2rem,11vw,3.5rem); margin-bottom:1rem; }
+  .lead { font-size:.95rem; }
+  .button-row { gap:1rem; margin-top:1.4rem; }
+  .hero { grid-template-columns: 1fr; min-height: unset; padding: 2.5rem 0 3.5rem; display: flex; flex-direction: column-reverse; gap:1.6rem; }
+  .portrait-stack { min-height: 360px; }
   .portrait-small { height: 260px; }
   .portrait-tall { height: 355px; }
-  .brand-repeat { gap: 0.5rem; margin-top: 1.6rem; }
-  .skill-grid { grid-template-columns: repeat(2, 1fr); }
+  .statement-copy { margin-top:1rem; }
+  .brand-repeat {
+    display:flex;
+    flex-wrap:wrap;
+    gap:1.25rem 2rem;
+    justify-content:center;
+    margin-inline:auto;
+    margin-top:1.6rem;
+    max-width:360px;
+  }
+  .brand-item {
+    flex:0 0 52px;
+    min-height:42px;
+  }
+  .projects-section { padding:3.25rem 0 4rem; }
+  .project-glow { height:460px; top:0; width:150%; }
+  .projects-heading { max-width:min(100%,360px); }
+  .carousel-window { padding:.5rem 0 1.3rem; }
+  .project-card { flex-basis:min(76vw,340px); }
+  .carousel-controls { gap:.75rem; }
+  .project-more { margin-top:1rem; }
+  .skill-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .projects-grid { grid-template-columns: repeat(2, 1fr); }
   .skill { min-height: 120px; }
-  .tool-list { grid-template-columns: repeat(4, 1fr); }
+  .tool-list { grid-template-columns: repeat(4, 72px); justify-content:center; }
   .tool-list div:nth-child(4n) { border-right: 0; }
-  .about-preview, .about-detail, .contact-page { gap: 3rem; grid-template-columns: 1fr; }
+  .about-preview, .about-detail, .contact-page { gap: 2.25rem; grid-template-columns: 1fr; }
   .experience-card { grid-template-columns: 1fr; }
   .experience-card .date { margin-bottom: -1rem; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .footer-grid .socials { grid-column: 1 / -1; }
   .value-grid, .stats { grid-template-columns: 1fr; }
-  .page-hero, .contact-page { padding: 4rem 0; }
+  .page-hero, .contact-page { padding: 3.25rem 0; }
   .form-row { grid-template-columns: 1fr; }
+  .site-footer { margin-top:3rem; padding-top:2.25rem; }
 }
 
 @media (max-width: 430px) {
-  .hero { padding-top: 2rem; }
-  .portrait-stack { gap: 0.7rem; min-height: 330px; }
+  :root {
+    --container:calc(100% - 1.5rem);
+    --space:3rem;
+  }
+  .hero { padding-top: 1.5rem; }
+  .portrait-stack { gap: 0.7rem; min-height: 310px; }
   .portrait-small { height: 220px; }
   .portrait-tall { height: 310px; }
   .portrait-note { font-size: 0.58rem; }
+  .brand-repeat { gap:1.15rem 1.6rem; max-width:310px; }
+  .project-card { flex-basis:82vw; }
   .project-content { padding: 1.1rem; }
-  .tool-list { grid-template-columns: repeat(3, 1fr); }
+  .tool-list { grid-template-columns: repeat(3, 72px); justify-content:center; }
+  .projects-grid { grid-template-columns: 1fr; }
   .tool-list div:nth-child(3n) { border-right: 0; }
   .footer-grid { grid-template-columns: 1fr; }
   .statement { padding-top: 3rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  * { scroll-behavior: auto !important; transition: none !important; }
+  html { scroll-snap-type: none; }
   .reveal { opacity: 1; transform: none; will-change: auto; }
 }

@@ -8,6 +8,7 @@
 
   document.body.insertAdjacentHTML('afterbegin', [
     '<a class="skip-link" href="#main-content">Skip to content</a>',
+    '<div class="nav-backdrop" hidden></div>',
     '<header class="site-header">',
     '<nav class="nav container" aria-label="Main navigation">',
     '<a class="brand" href="index.html" aria-label="Homepage">CAS</a>',
@@ -18,7 +19,7 @@
     '<ul class="nav-links" id="nav-links">',
     '<li><a' + isActive('home') + ' href="index.html">home</a></li>',
     '<li><a' + isActive('about') + ' href="about.html">about</a></li>',
-    '<li><a href="index.html#projects">projects</a></li>',
+    '<li><a' + isActive('projects') + ' href="projects.html">projects</a></li>',
     '<li><a' + isActive('contact') + ' href="contact.html">contact</a></li>',
     '</ul>',
     '<button class="theme-toggle" type="button" aria-label="Switch to light mode" aria-pressed="false">',
@@ -51,7 +52,7 @@
     '<a class="brand" href="index.html">CAS</a>',
     '<p>Thoughtful digital work for brands with somewhere to go.</p></div>',
     '<div class="footer-links"><a href="index.html">home</a>',
-    '<a href="about.html">about</a><a href="index.html#projects">projects</a>',
+    '<a href="about.html">about</a><a href="projects.html">projects</a>',
     '<a href="contact.html">contact</a></div>',
     '<div class="socials"><a href="[SOCIAL MEDIA URL]" aria-label="LinkedIn profile">',
     '<i class="fa-brands fa-linkedin-in"></i></a>',
