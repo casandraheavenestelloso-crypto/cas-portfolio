@@ -188,6 +188,19 @@ textarea:focus {
     height:auto;
   }
 
+  /* Project listings are a continuous page: keep their heading attached to the grid. */
+  body[data-page="projects"] main > .projects-page {
+    display:block;
+    height:auto;
+    min-height:calc(100svh - var(--header-offset));
+  }
+
+  body[data-page="projects"] .projects-page .page-hero {
+    height:auto;
+    min-height:0;
+    padding:clamp(3rem,6vw,5rem) 0 2.25rem;
+  }
+
   .projects-section {
     align-content: center;
     display: grid;
