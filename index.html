@@ -11,8 +11,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css?v=26">
-    <link rel="stylesheet" href="css/responsive.css?v=26">
+    <link rel="stylesheet" href="css/style.css?v=29">
+    <link rel="stylesheet" href="css/responsive.css?v=34">
   </head>
   <body data-page="home">
     <main id="main-content">
@@ -361,16 +361,6 @@ From WordPress websites to Shopify and eCommerce stores, I build fast, responsiv
                 </article>
               </div>
             </div>
-            <div class="carousel-controls">
-              <button class="carousel-button prev" type="button" aria-label="Previous project">
-              <i class="fa-solid fa-arrow-left">
-              </i>
-              </button>
-              <button class="carousel-button next" type="button" aria-label="Next project">
-              <i class="fa-solid fa-arrow-right">
-              </i>
-              </button>
-            </div>
             <div class="project-more">
               <a class="button button-outline" href="projects.html">
               View More Projects
@@ -396,63 +386,44 @@ From WordPress websites to Shopify and eCommerce stores, I build fast, responsiv
           </h2>
         </div>
         <div class="skill-grid">
-          <article class="skill reveal">
-            <i class="fa-brands fa-html5">
-            </i>
-            <h3>
-              HTML5
-            </h3>
+          <article class="skill skill-group reveal">
+            <i class="fa-solid fa-laptop-code" aria-hidden="true"></i>
+            <h3>Front-end Development</h3>
+            <div class="skill-icon-list" aria-label="React.js, HTML5, JavaScript, and Web Animation">
+              <span tabindex="0" aria-label="React.js"><i class="fa-brands fa-react" aria-hidden="true"></i><b>React.js</b></span>
+              <span tabindex="0" aria-label="HTML5"><i class="fa-brands fa-html5" aria-hidden="true"></i><b>HTML5</b></span>
+              <span tabindex="0" aria-label="JavaScript"><i class="fa-brands fa-js" aria-hidden="true"></i><b>JavaScript</b></span>
+              <span tabindex="0" aria-label="Web Animation"><i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i><b>Web Animation</b></span>
+            </div>
           </article>
-          <article class="skill reveal">
-            <i class="fa-brands fa-css3-alt">
-            </i>
-            <h3>
-              CSS3
-            </h3>
+          <article class="skill skill-group reveal">
+            <i class="fa-solid fa-server" aria-hidden="true"></i>
+            <h3>Back-end &amp; Data</h3>
+            <div class="skill-icon-list" aria-label="PHP, Java, MySQL, APIs, and JSON">
+              <span tabindex="0" aria-label="PHP"><i class="fa-brands fa-php" aria-hidden="true"></i><b>PHP</b></span>
+              <span tabindex="0" aria-label="Java"><i class="fa-brands fa-java" aria-hidden="true"></i><b>Java</b></span>
+              <span tabindex="0" aria-label="MySQL"><i class="fa-solid fa-database" aria-hidden="true"></i><b>MySQL</b></span>
+              <span tabindex="0" aria-label="APIs"><i class="fa-solid fa-plug" aria-hidden="true"></i><b>APIs</b></span>
+              <span tabindex="0" aria-label="JSON"><i class="fa-solid fa-code" aria-hidden="true"></i><b>JSON</b></span>
+            </div>
           </article>
-          <article class="skill reveal">
-            <i class="fa-brands fa-js">
-            </i>
-            <h3>
-              JavaScript
-            </h3>
-          </article>
-          <article class="skill reveal">
-            <i class="fa-brands fa-react">
-            </i>
-            <h3>
-              React
-            </h3>
-          </article>
-          <article class="skill reveal">
-            <i class="fa-solid fa-pen-ruler">
-            </i>
-            <h3>
-              UI/UX Design
-            </h3>
-          </article>
-          <article class="skill reveal">
-            <i class="fa-brands fa-figma">
-            </i>
-            <h3>
-              Figma
-            </h3>
-          </article>
-          <article class="skill reveal">
-            <i class="fa-solid fa-chart-line">
-            </i>
-            <h3>
-              SEO-Focused Development
-            </h3>
+          <article class="skill skill-group reveal">
+            <i class="fa-solid fa-code-branch" aria-hidden="true"></i>
+            <h3>Engineering Workflow</h3>
+            <div class="skill-icon-list" aria-label="Git and Liquid">
+              <span tabindex="0" aria-label="Git"><i class="fa-brands fa-git-alt" aria-hidden="true"></i><b>Git</b></span>
+              <span tabindex="0" aria-label="Liquid"><i class="fa-solid fa-droplet" aria-hidden="true"></i><b>Liquid</b></span>
+            </div>
           </article>
         </div>
       </section>
       <section class="tools section container" id="tools-section" hidden>
         <div class="section-intro reveal">
-          <p class="eyebrow">Platforms &amp; tools</p>
-          <h2>My core <span>stack.</span></h2>
+          <p class="eyebrow">Growth, workflow &amp; infrastructure</p>
+          <h2>Beyond the <span>build.</span></h2>
         </div>
-        <div class="tool-list reveal" id="tool-list" aria-label="Platforms and tools"></div>
+        <div class="tool-category-tabs reveal" id="tool-category-tabs" role="tablist" aria-label="Technology categories"></div>
+        <div class="tool-groups reveal" id="tool-groups"></div>
       </section>
       <section class="about-preview section container">
         <div class="about-image reveal">
@@ -544,8 +515,8 @@ From WordPress websites to Shopify and eCommerce stores, I build fast, responsiv
     </main>
     <script src="js/components.js?v=26"></script>
     <script src="js/projects-data.js?v=26"></script>
-    <script src="js/tools.js?v=26"></script>
-    <script src="js/script.js?v=26">
+    <script src="js/tools.js?v=28"></script>
+    <script src="js/script.js?v=30">
     </script>
   </body>
 </html>

@@ -107,37 +107,57 @@ textarea:focus {
 /* Desktop presentation mode: one main section per viewport scroll. */
 @media (min-width: 769px) {
   html {
-    --header-offset:82px;
-    scroll-padding-top: var(--header-offset);
-    scroll-snap-type: none;
+    --header-offset:76px;
+    scroll-padding-top:var(--header-offset);
+    scroll-snap-type:y mandatory;
   }
 
   main > section {
-    min-height: calc(100svh - var(--header-offset));
-    scroll-snap-align: start;
-    scroll-margin-top: var(--header-offset);
+    align-content:center;
+    display:grid;
+    height:calc(100svh - var(--header-offset));
+    min-height:calc(100svh - var(--header-offset));
+    scroll-snap-align:start;
+    scroll-snap-stop:always;
   }
 
   .site-footer {
-    scroll-snap-align: start;
-    scroll-margin-top: var(--header-offset);
+    scroll-snap-align:start;
+    scroll-snap-stop:always;
   }
 
   .hero,
   .page-hero {
-    min-height: calc(100svh - var(--header-offset));
+    height:calc(100svh - var(--header-offset));
+    min-height:calc(100svh - var(--header-offset));
   }
 
   .projects-section {
     align-content: center;
     display: grid;
-    overflow-x: clip;
-    overflow-y: visible;
-    padding: clamp(2.5rem, 4vw, 4rem) 0;
+    overflow:clip;
+    padding:clamp(.9rem,2vh,1.5rem) 0;
   }
 
   .projects-section .container {
-    transform: translateY(clamp(2rem, 5vh, 4rem));
+    transform:none;
+  }
+
+  .projects-heading h2 {
+    font-size:clamp(2.5rem,5.3vw,5.3rem);
+    white-space:nowrap;
+  }
+
+  .carousel-window {
+    padding:1rem 0 2rem;
+  }
+
+  .project-card {
+    flex-basis:clamp(320px,24vw,400px);
+  }
+
+  .project-card img {
+    aspect-ratio:1.9;
   }
 
   .contact-page {
@@ -225,7 +245,6 @@ textarea:focus {
   .projects-heading { max-width:min(100%,360px); }
   .carousel-window { padding:.5rem 0 1.3rem; }
   .project-card { flex-basis:min(76vw,340px); }
-  .carousel-controls { gap:.75rem; }
   .project-more { margin-top:1rem; }
   .skill-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .projects-grid { grid-template-columns: repeat(2, 1fr); }

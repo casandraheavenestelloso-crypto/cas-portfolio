@@ -1,5 +1,19 @@
 /* Shared navigation, carousel, reveal, disclosure, and form interactions. */
 document.addEventListener('DOMContentLoaded', () => {
+  // Keep one-screen sections aligned to the visible space below the sticky navigation.
+  const syncHeaderHeight = () => {
+    const header = document.querySelector('.site-header');
+    if (!header) return;
+
+    document.documentElement.style.setProperty(
+      '--header-offset',
+      `${Math.ceil(header.getBoundingClientRect().height)}px`,
+    );
+  };
+
+  syncHeaderHeight();
+  window.addEventListener('resize', syncHeaderHeight, { passive: true });
+
   document.querySelectorAll('.current-year').forEach((element) => {
     element.textContent = new Date().getFullYear();
   });
@@ -177,134 +191,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.querySelectorAll('.reveal').forEach((element) => observer.observe(element));
 
-  const pageSections = [...document.querySelectorAll('main > section, .site-footer')];
-  const sectionKeys = ['ArrowDown', 'PageDown', ' ', 'ArrowUp', 'PageUp', 'Home', 'End'];
-  const editableSelector = 'input, textarea, select, button, a, [contenteditable="true"]';
-  const desktopSectionsQuery = globalThis.matchMedia?.('(min-width: 769px)');
-  let isSectionScrolling = false;
-
-  const getHeaderOffset = () => (
-    desktopSectionsQuery?.matches
-      ? document.querySelector('.site-header')?.offsetHeight || 0
-      : 0
-  );
-
-  const getCurrentSectionIndex = () => {
-    const headerOffset = getHeaderOffset();
-    const scrollAnchor = window.scrollY + headerOffset + 4;
-    let currentIndex = 0;
-
-    pageSections.forEach((section, index) => {
-      if (section.offsetTop <= scrollAnchor) currentIndex = index;
-    });
-
-    return currentIndex;
-  };
-
-  const shouldUseNativeSectionScroll = (direction) => {
-    const currentSection = pageSections[getCurrentSectionIndex()];
-
-    if (!currentSection) return false;
-
-    const headerOffset = getHeaderOffset();
-    const visibleHeight = window.innerHeight - headerOffset;
-    const isLongSection = currentSection.offsetHeight > visibleHeight + 80;
-
-    if (!isLongSection) return false;
-
-    const sectionTop = Math.max(0, currentSection.offsetTop - headerOffset);
-    const sectionBottom = Math.max(
-      sectionTop,
-      currentSection.offsetTop + currentSection.offsetHeight - window.innerHeight
-    );
-
-    if (direction > 0) return window.scrollY < sectionBottom - 8;
-
-    return window.scrollY > sectionTop + 8;
-  };
-
-  const scrollToSection = (index) => {
-    const nextIndex = Math.max(0, Math.min(index, pageSections.length - 1));
-    const target = pageSections[nextIndex];
-
-    if (!target || isSectionScrolling) return;
-
-    const headerOffset = getHeaderOffset();
-    const startY = window.scrollY;
-    const endY = Math.max(0, target.offsetTop - headerOffset);
-    const distance = endY - startY;
-
-    if (Math.abs(distance) < 2) return;
-
-    isSectionScrolling = true;
-    const duration = Math.min(1650, Math.max(980, Math.abs(distance) * 0.82));
-    const startTime = performance.now();
-
-    const ease = (progress) => (
-      progress < 0.5
-        ? 4 * progress * progress * progress
-        : 1 - Math.pow(-2 * progress + 2, 3) / 2
-    );
-
-    const step = (now) => {
-      const progress = Math.min((now - startTime) / duration, 1);
-
-      window.scrollTo(0, startY + distance * ease(progress));
-
-      if (progress < 1) {
-        requestAnimationFrame(step);
-        return;
-      }
-
-      isSectionScrolling = false;
-    };
-
-    requestAnimationFrame(step);
-  };
-
-  document.addEventListener('wheel', (event) => {
-    if (!desktopSectionsQuery?.matches || Math.abs(event.deltaY) < 42 || event.ctrlKey) return;
-    if (event.target.closest('.carousel, .nav-menu, .contact-form')) return;
-
-    if (isSectionScrolling) {
-      event.preventDefault();
-      return;
-    }
-
-    const direction = event.deltaY > 0 ? 1 : -1;
-
-    if (shouldUseNativeSectionScroll(direction)) return;
-
-    event.preventDefault();
-    scrollToSection(getCurrentSectionIndex() + direction);
-  }, { passive: false });
-
-  document.addEventListener('keydown', (event) => {
-    if (!sectionKeys.includes(event.key) || event.altKey || event.ctrlKey || event.metaKey) return;
-    if (event.target.closest(editableSelector)) return;
-
-    const currentIndex = getCurrentSectionIndex();
-
-    if (event.key === 'Home') {
-      event.preventDefault();
-      scrollToSection(0);
-      return;
-    }
-
-    if (event.key === 'End') {
-      event.preventDefault();
-      scrollToSection(pageSections.length - 1);
-      return;
-    }
-
-    const direction = ['ArrowDown', 'PageDown', ' '].includes(event.key) ? 1 : -1;
-
-    if (shouldUseNativeSectionScroll(direction)) return;
-
-    event.preventDefault();
-    scrollToSection(currentIndex + direction);
-  });
-
   document.querySelectorAll('.read-more').forEach((button) => {
     button.addEventListener('click', () => {
       const content = button.closest('.experience-card').querySelector('.more-content');
@@ -467,14 +353,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     };
 
-    carousel.querySelector('.prev').addEventListener('click', () => {
-      move(-1);
-      restartAutoplay();
-    });
-    carousel.querySelector('.next').addEventListener('click', () => {
-      move(1);
-      restartAutoplay();
-    });
     carousel.addEventListener('keydown', (event) => {
       if (event.key === 'ArrowLeft') {
         move(-1);

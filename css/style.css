@@ -373,6 +373,12 @@ h1 span,h2 span {
   font-size:.9rem;
   margin:2rem 0 0
 }
+.skill-group p {
+  color:var(--gray);
+  font-size:.76rem;
+  line-height:1.6;
+  margin:.6rem 0 0
+}
 .projects-section {
   overflow:hidden;
   padding:var(--space) 0;
@@ -553,7 +559,6 @@ h1 span,h2 span {
 .project-more {
   display:flex;
   justify-content:center;
-  margin-top:1.4rem
 }
 .projects-grid {
   display:grid;
@@ -630,6 +635,40 @@ h1 span,h2 span {
   grid-template-columns:repeat(auto-fit,80px);
   justify-content:center
 }
+.skill-icon-list {
+  align-items:center;
+  display:flex;
+  flex-wrap:wrap;
+  gap:.8rem;
+  margin-top:1rem
+}
+.skill-icon-list span {
+  color:var(--pink);
+  cursor:default;
+  font-size:1.35rem;
+  position:relative
+}
+.skill-icon-list span i { font-size:inherit; }
+.skill-icon-list span b {
+  background:var(--white);
+  border-radius:999px;
+  color:var(--black);
+  font-size:.62rem;
+  font-weight:700;
+  left:50%;
+  opacity:0;
+  padding:.3rem .45rem;
+  pointer-events:none;
+  position:absolute;
+  top:calc(100% + .55rem);
+  transform:translate(-50%,-.25rem);
+  transition:.2s;
+  white-space:nowrap;
+  z-index:4
+}
+.skill-icon-list span:hover b,
+.skill-icon-list span:focus-visible b { opacity:1; transform:translate(-50%,0); }
+.skill-icon-list span:focus-visible { outline:2px solid var(--pink); outline-offset:4px; }
 .tool-list div {
   border-right:1px solid var(--line);
   display:grid;
@@ -703,6 +742,45 @@ h1 span,h2 span {
 .tool-list div:nth-child(3n) {
   border-right: none;
 }
+.tool-category-tabs {
+  display:flex;
+  flex-wrap:wrap;
+  gap:.65rem;
+  justify-content:center;
+  margin:1.5rem auto;
+  max-width:920px
+}
+.tool-category-tab {
+  background:transparent;
+  border:1px solid var(--line);
+  border-radius:999px;
+  color:var(--gray);
+  cursor:pointer;
+  font:inherit;
+  font-size:.72rem;
+  font-weight:700;
+  padding:.7rem .95rem;
+  transition:.2s
+}
+.tool-category-tab:hover,
+.tool-category-tab:focus-visible,
+.tool-category-tab.is-active {
+  background:#e652ed16;
+  border-color:var(--pink);
+  color:var(--white);
+  outline:0
+}
+.tool-category-panel {
+  margin-inline:auto;
+  max-width:960px
+}
+.tool-category-copy {
+  margin:0 auto 1rem;
+  max-width:560px;
+  text-align:center
+}
+.tool-category-copy h3 { font-size:1rem; margin:0 0 .35rem; }
+.tool-category-copy p { color:var(--gray); font-size:.78rem; margin:0; }
 
 .about-preview,.about-detail {
   align-items:center;
