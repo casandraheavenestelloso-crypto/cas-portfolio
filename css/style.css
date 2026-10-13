@@ -710,8 +710,8 @@ h1 span,h2 span {
   pointer-events:none;
   position:absolute;
   text-align:center;
-  top:.45rem;
-  transform:translate(-50%,-5px);
+  bottom:.45rem;
+  transform:translate(-50%,5px);
   transition:opacity .2s ease,transform .2s ease;
   white-space:normal;
   z-index:2
@@ -723,7 +723,7 @@ h1 span,h2 span {
 .tool-list div:focus-visible i,
 .tool-list div:hover .tool-monogram,
 .tool-list div:focus-visible .tool-monogram {
-  transform:translateY(14px) scale(1.08)
+  transform:translateY(-14px) scale(1.08)
 }
 .tool-list div:hover .tool-label,
 .tool-list div:focus-visible .tool-label {

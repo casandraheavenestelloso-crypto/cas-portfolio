@@ -71,9 +71,13 @@ html[data-theme="light"] .tool-category-tab.is-active {
   color: #1b151d;
 }
 
-html[data-theme="light"] .skill-icon-list span b {
-  background: var(--pink);
-  color: #160d17;
+html[data-theme="light"] .brand-label,
+html[data-theme="light"] .skill-icon-list span b,
+html[data-theme="light"] .tool-label,
+html[data-theme="light"] .brand-sub {
+  background: #1b151d;
+  border-color: #1b151d;
+  color: #fff;
 }
 
 html[data-theme="light"] .copyright {
@@ -306,6 +310,11 @@ textarea:focus {
   .about-preview, .about-detail, .contact-page { gap: 2.25rem; grid-template-columns: 1fr; }
   .experience-card { grid-template-columns: 1fr; }
   .experience-card .date { margin-bottom: -1rem; }
+  .experience-bottom {
+    align-items:flex-start;
+    flex-direction:column;
+    gap:.85rem;
+  }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .footer-grid .socials { grid-column: 1 / -1; }
   .value-grid, .stats { grid-template-columns: 1fr; }
