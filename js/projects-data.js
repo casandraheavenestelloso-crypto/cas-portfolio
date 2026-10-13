@@ -1,90 +1,28 @@
+/* Live website work and ongoing client support. Replace placeholder media as assets become available. */
 window.PROJECTS = [
-  {
-    slug: "thread-cupid",
-    title: "Thread & Cupid",
-    category: "BigCommerce - Full-Stack Development",
-    description: "Ecommerce theme customization, product workflows, third-party integrations, and UI/UX improvements.",
-    longDescription: "A BigCommerce ecommerce project focused on theme customization, product and order functionality, UI/UX improvements, and third-party integrations.",
-    mediaType: "image",
-    mediaUrl: "assets/images/project-orbit.svg",
-    tags: ["BigCommerce", "APIs"],
-    projectUrl: ""
-  },
-  {
-    slug: "spot-pub-cafe",
-    title: "Spot.Pub Cafe",
-    category: "Full-Stack Web Development",
-    description: "A responsive CRUD-based web system for cafe operations, with practical user flows and clear screens.",
-    longDescription: "A responsive CRUD-based web system developed for a cafe workflow, with functional interactions and a user-friendly interface.",
-    mediaType: "image",
-    mediaUrl: "assets/images/project-studio.svg",
-    tags: ["PHP", "MySQL"],
-    projectUrl: ""
-  },
-  {
-    slug: "vetsync",
-    title: "VetSync",
-    category: "Mobile App - Capstone Project",
-    description: "A Flutter mobile application shaped through milestones, team coordination, and useful daily features.",
-    longDescription: "A Flutter-based mobile application managed through project milestones, team coordination, and a focus on useful day-to-day functionality.",
-    mediaType: "image",
-    mediaUrl: "assets/images/project-vault.svg",
-    tags: ["Flutter", "Project Management"],
-    projectUrl: ""
-  },
-  {
-    slug: "bloom-studio",
-    title: "Bloom Studio",
-    category: "WordPress - Service Website",
-    description: "A service website template with reusable content blocks, landing sections, and a clear inquiry path.",
-    longDescription: "A polished service website template with clear landing sections, reusable blocks, and a conversion-focused contact flow.",
-    mediaType: "image",
-    mediaUrl: "assets/images/project-orbit.svg",
-    tags: ["WordPress", "SEO"],
-    projectUrl: ""
-  },
-  {
-    slug: "aurora-goods",
-    title: "Aurora Goods",
-    category: "Shopify - Storefront",
-    description: "An ecommerce concept for collection browsing, product storytelling, and mobile-first shopping.",
-    longDescription: "Ecommerce storefront concept with collection sections, product storytelling, and mobile-first shopping interactions.",
-    mediaType: "image",
-    mediaUrl: "assets/images/project-studio.svg",
-    tags: ["Shopify", "Liquid"],
-    projectUrl: ""
-  },
-  {
-    slug: "signal-board",
-    title: "Signal Board",
-    category: "React - Dashboard UI",
-    description: "A dashboard template for tracking tasks, campaign health, and business metrics at a glance.",
-    longDescription: "A dashboard interface template for tracking tasks, campaign health, and practical business metrics at a glance.",
-    mediaType: "image",
-    mediaUrl: "assets/images/project-vault.svg",
-    tags: ["React", "UI/UX"],
-    projectUrl: ""
-  },
-  {
-    slug: "findable-pages",
-    title: "Findable Pages",
-    category: "SEO - Content Structure",
-    description: "A search-focused page framework for hierarchy, readability, service content, and schema-ready sections.",
-    longDescription: "A search-focused website framework built around page hierarchy, schema-ready sections, and readable service content.",
-    mediaType: "image",
-    mediaUrl: "assets/images/project-orbit.svg",
-    tags: ["SEO", "Content"],
-    projectUrl: ""
-  },
-  {
-    slug: "reserveflow",
-    title: "ReserveFlow",
-    category: "Full-Stack - Booking Flow",
-    description: "A booking workflow template with service selection, validation, and a direct route to inquiry.",
-    longDescription: "A booking workflow template with service selection, simple validation, and a clean path from interest to inquiry.",
-    mediaType: "image",
-    mediaUrl: "assets/images/project-studio.svg",
-    tags: ["PHP", "Forms"],
-    projectUrl: ""
-  }
+  { slug: 'hoss-couture', title: 'Hoss Couture', category: 'Wix · E-commerce Website', featured: true, description: 'A complete live storefront with product browsing and ordering.', longDescription: 'A complete Wix e-commerce website built for product browsing and ordering.', mediaUrl: 'assets/images/project-orbit.svg', tags: ['Wix', 'E-commerce', 'Ordering'], projectUrl: 'https://www.hosscouture.com/' },
+  { slug: 'girls-day-la', title: 'Girls Day LA', category: 'WordPress · Website Build', featured: true, description: 'A complete live WordPress website build for a fashion-focused brand.', longDescription: 'A complete WordPress website build, delivered as a live brand presence.', mediaUrl: 'assets/images/project-studio.svg', tags: ['WordPress', 'Website Build'], projectUrl: 'https://girlsdayla.com/' },
+  { slug: 'yze-agency', title: 'YZE Agency', category: 'WordPress · Website Build', featured: true, description: 'A complete live WordPress website build for an agency presence.', longDescription: 'A complete WordPress website build delivered as a live agency website.', mediaUrl: 'assets/images/project-vault.svg', tags: ['WordPress', 'Website Build'], projectUrl: 'https://yzeagency.com/' },
+  { slug: 'grin-status', title: 'Grin Status', category: 'WordPress · Website Build', featured: true, description: 'A complete live WordPress website build for a clear, polished brand presence.', longDescription: 'A complete WordPress website build delivered as a live brand website.', mediaUrl: 'assets/images/project-orbit.svg', tags: ['WordPress', 'Website Build'], projectUrl: 'https://grinstatus.com/' },
+  { slug: 'vital-ops-group', title: 'Vital Ops Group', category: 'Shopify · Website Build', featured: true, description: 'A complete live Shopify website build with a focused e-commerce foundation.', longDescription: 'A complete Shopify website build delivered as a live e-commerce experience.', mediaUrl: 'assets/images/project-studio.svg', tags: ['Shopify', 'E-commerce', 'Liquid'], projectUrl: 'https://vitalopsgroup.com/' },
+
+  { slug: 'tractr', title: 'Tractr', category: 'Shopify · Store Updates', description: 'Homepage and product-page updates for a Shopify store.', longDescription: 'Ongoing Shopify homepage and product-page updates to keep the store current and useful.', mediaUrl: 'assets/images/project-vault.svg', tags: ['Shopify', 'Page Updates'], projectUrl: 'https://tractr.com/' },
+  { slug: 'shop-aratta', title: 'Shop Aratta', category: 'Shopify · Store Updates', description: 'Homepage and product-page updates for a Shopify store.', longDescription: 'Ongoing Shopify homepage and product-page updates supporting the live storefront.', mediaUrl: 'assets/images/project-orbit.svg', tags: ['Shopify', 'Product Pages'], projectUrl: 'https://shoparatta.com/' },
+  { slug: 'leonard-liang', title: 'Leonard Liang', category: 'WordPress · Page Updates', description: 'Targeted WordPress page updates and live-site improvements.', longDescription: 'WordPress page updates that keep the live website accurate and polished.', mediaUrl: 'assets/images/project-studio.svg', tags: ['WordPress', 'Maintenance'], projectUrl: 'http://leonardliang.com/' },
+  { slug: 'bull-and-bear', title: 'Bull & Bear', category: 'Shopify · Store Updates', description: 'Ongoing Shopify storefront updates and maintenance.', longDescription: 'Shopify storefront updates and ongoing support for the live store.', mediaUrl: 'assets/images/project-vault.svg', tags: ['Shopify', 'Maintenance'], projectUrl: 'https://bullandbear.shop/' },
+  { slug: 'sewcial-ops', title: 'Sewcial Ops', category: 'Shopify · Store Updates', description: 'Ongoing Shopify storefront updates and maintenance.', longDescription: 'Shopify storefront updates and ongoing support for the live store.', mediaUrl: 'assets/images/project-orbit.svg', tags: ['Shopify', 'Maintenance'], projectUrl: 'https://sewcialops.com/' },
+  { slug: 'pink-chandelier', title: 'Pink Chandelier Boutique', category: 'Shopify · Store Updates', description: 'Ongoing Shopify storefront updates and maintenance.', longDescription: 'Shopify storefront updates and ongoing support for the live store.', mediaUrl: 'assets/images/project-studio.svg', tags: ['Shopify', 'Maintenance'], projectUrl: 'https://pinkchandelierboutique.com/' },
+  { slug: 'macoma-boutique', title: 'Macoma Boutique', category: 'Shopify · Store Updates', description: 'Ongoing Shopify storefront updates and maintenance.', longDescription: 'Shopify storefront updates and ongoing support for the live store.', mediaUrl: 'assets/images/project-vault.svg', tags: ['Shopify', 'Maintenance'], projectUrl: 'https://macomaboutique.com/' },
+  { slug: 'pretty-simple-me', title: 'Pretty Simple Me', category: 'Shopify · Store Updates', description: 'Ongoing Shopify storefront updates and maintenance.', longDescription: 'Shopify storefront updates and ongoing support for the live store.', mediaUrl: 'assets/images/project-orbit.svg', tags: ['Shopify', 'Maintenance'], projectUrl: 'https://prettysimpleme.com/' },
+  { slug: 'temaki-to-go', title: 'Temaki To Go', category: 'Squarespace · Page Updates', description: 'Targeted Squarespace page updates for a live restaurant website.', longDescription: 'Squarespace page updates supporting a live restaurant website.', mediaUrl: 'assets/images/project-studio.svg', tags: ['Squarespace', 'Maintenance'], projectUrl: 'https://www.temakitogo.com/' },
+
+  { slug: 'unicolors', title: 'Unicolors', category: 'Website · Daily Maintenance', description: 'Routine live-site maintenance and updates.', longDescription: 'Ongoing daily maintenance to keep the live site working reliably.', mediaUrl: 'assets/images/project-vault.svg', tags: ['Maintenance'], projectUrl: 'https://unicolors.net/' },
+  { slug: 'blithe-la', title: 'Blithe LA', category: 'Website · Daily Maintenance', description: 'Routine live-site maintenance and updates.', longDescription: 'Ongoing daily maintenance to keep the live site working reliably.', mediaUrl: 'assets/images/project-orbit.svg', tags: ['Maintenance'], projectUrl: 'https://blithela.com/' },
+  { slug: 'kelly-helfman', title: 'Kelly Helfman', category: 'Website · Daily Maintenance', description: 'Routine live-site maintenance and updates.', longDescription: 'Ongoing daily maintenance to keep the live site working reliably.', mediaUrl: 'assets/images/project-studio.svg', tags: ['Maintenance'], projectUrl: 'https://kellyhelfman.com/' },
+  { slug: 'state-of-fashion', title: 'State of Fashion', category: 'Website · Daily Maintenance', description: 'Routine live-site maintenance and updates.', longDescription: 'Ongoing daily maintenance to keep the live site working reliably.', mediaUrl: 'assets/images/project-vault.svg', tags: ['Maintenance'], projectUrl: 'https://stateoffashion.com/' },
+  { slug: 'ysnson', title: 'YSN Son', category: 'Website · Daily Maintenance', description: 'Routine live-site maintenance and updates.', longDescription: 'Ongoing daily maintenance to keep the live site working reliably.', mediaUrl: 'assets/images/project-orbit.svg', tags: ['Maintenance'], projectUrl: 'https://www.ysnson.com/' },
+  { slug: 'life-with-mindy-and-jr', title: 'Life With Mindy & Jr', category: 'Website · Daily Maintenance', description: 'Routine live-site maintenance and updates.', longDescription: 'Ongoing daily maintenance to keep the live site working reliably.', mediaUrl: 'assets/images/project-studio.svg', tags: ['Maintenance'], projectUrl: 'https://lifewithmindyandjr.com/' },
+  { slug: 'every-season-jewelry', title: 'Every Season Jewelry', category: 'Website · Daily Maintenance', description: 'Routine live-site maintenance and updates.', longDescription: 'Ongoing daily maintenance to keep the live site working reliably.', mediaUrl: 'assets/images/project-vault.svg', tags: ['Maintenance'], projectUrl: 'https://everyseasonjewelry.com/' },
+  { slug: 'ive-clothing', title: 'IVE Clothing', category: 'Website · Daily Maintenance', description: 'Routine live-site maintenance and updates.', longDescription: 'Ongoing daily maintenance to keep the live site working reliably.', mediaUrl: 'assets/images/project-orbit.svg', tags: ['Maintenance'], projectUrl: 'https://www.iveclothing.com/' },
+  { slug: 'pakingus', title: 'Pakingus', category: 'Website · Daily Maintenance', description: 'Routine live-site maintenance and updates.', longDescription: 'Ongoing daily maintenance to keep the live site working reliably.', mediaUrl: 'assets/images/project-studio.svg', tags: ['Maintenance'], projectUrl: 'https://pakingus.com/' }
 ];

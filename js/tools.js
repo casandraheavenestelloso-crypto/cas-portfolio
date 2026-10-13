@@ -7,7 +7,7 @@ const toolGroups = [
       ['Technical SEO', 'fa-solid fa-magnifying-glass-chart'], ['GEO', 'fa-solid fa-earth-americas'],
       ['Google Tag Manager', 'fa-solid fa-tags', 'GTM'], ['Google Analytics', 'fa-solid fa-chart-line', 'GA'],
       ['Klaviyo', '', 'K'], ['MailerLite', '', 'M'], ['Web3Forms', 'fa-solid fa-file-lines'], ['Calendly', 'fa-solid fa-calendar-days'],
-      ['SMTP', 'fa-solid fa-server'], ['Mailgun', 'fa-solid fa-paper-plane', 'M'], ['Email Flows', 'fa-solid fa-envelope-open-text'],
+      ['SMTP', 'fa-solid fa-server'], ['Mailgun', 'fa-solid fa-paper-plane', 'M'],
     ],
   },
   {

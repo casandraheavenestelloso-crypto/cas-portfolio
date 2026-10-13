@@ -204,6 +204,24 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  const featuredTrack = document.querySelector('[data-featured-carousel]');
+
+  if (featuredTrack) {
+    const featuredProjects = projects.filter((project) => project.featured);
+    featuredTrack.innerHTML = featuredProjects.map((project) => [
+      '<article class="project-card">',
+      renderProjectMedia(project),
+      '<div class="project-content">',
+      '<p class="card-kicker">' + project.category + '</p>',
+      '<h3>' + project.title + '</h3>',
+      '<p>' + project.description + '</p>',
+      '<div class="tag-row">' + renderTags(project.tags) + '</div>',
+      '<a href="' + projectLink(project.slug) + '" class="card-link">View Project <i class="fa-solid fa-arrow-right"></i></a>',
+      '</div>',
+      '</article>',
+    ].join('')).join('');
+  }
+
   const carousel = document.querySelector('.carousel');
 
   if (carousel) {
