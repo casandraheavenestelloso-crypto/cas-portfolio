@@ -5,6 +5,7 @@
   const main = document.querySelector('main');
 
   if (!main) return;
+  const sunIcon = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"></path></svg>';
 
   document.body.insertAdjacentHTML('afterbegin', [
     '<a class="skip-link" href="#main-content">Skip to content</a>',
@@ -22,9 +23,9 @@
     '<li><a' + isActive('projects') + ' href="projects.html">projects</a></li>',
     '<li><a' + isActive('contact') + ' href="contact.html">contact</a></li>',
     '</ul>',
-    '<button class="theme-toggle" type="button" aria-label="Switch to light mode" aria-pressed="false">',
-    '<i class="fa-solid fa-sun"></i></button>',
     '</div>',
+    '<button class="theme-toggle" type="button" aria-label="Switch to light mode" aria-pressed="false">',
+    sunIcon + '</button>',
     '</nav></header>',
   ].join(''));
 
@@ -37,7 +38,7 @@
     document.documentElement.dataset.theme = theme;
     themeToggle.setAttribute('aria-pressed', String(isLight));
     themeToggle.setAttribute('aria-label', isLight ? 'Switch to dark mode' : 'Switch to light mode');
-    themeToggle.innerHTML = '<i class="fa-solid fa-' + (isLight ? 'moon' : 'sun') + '"></i>';
+    themeToggle.innerHTML = isLight ? '<i class="fa-solid fa-moon" aria-hidden="true"></i>' : sunIcon;
   };
 
   setTheme(savedTheme || (prefersLight ? 'light' : 'dark'));

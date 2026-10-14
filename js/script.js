@@ -118,11 +118,14 @@ document.addEventListener('DOMContentLoaded', () => {
   if (projectDetail) {
     const params = new URLSearchParams(window.location.search);
     const slug = params.get('project') || projects[0]?.slug;
-    const project = projects.find((item) => item.slug === slug);
+    const project = projects.find((item) => item.slug === slug || item.aliases?.includes(slug));
 
     if (project) {
       document.title = project.title + ' - CAS';
-      const gallery = (project.gallery || []).filter((item) => decodeURIComponent(item.src) !== decodeURIComponent(project.mediaUrl || ''));
+      const isMobileScreenshot = (item) => /mobile/i.test(item.caption || '') || /mobile/i.test(item.alt || '') || item.height > item.width;
+      const gallery = (project.gallery || [])
+        .filter((item) => decodeURIComponent(item.src) !== decodeURIComponent(project.mediaUrl || ''))
+        .sort((a, b) => Number(isMobileScreenshot(a)) - Number(isMobileScreenshot(b)));
       const hasLongDetails = Boolean(project.detailParagraphs?.length);
       projectDetail.innerHTML = [
         '<section class="project-detail-hero container">',
@@ -139,11 +142,14 @@ document.addEventListener('DOMContentLoaded', () => {
         '</section>',
         '<section class="project-detail-media container" aria-label="Project gallery">',
         gallery.length
-          ? '<div class="project-gallery">' + gallery.map((item, index) =>
-            '<figure' + (item.height > item.width ? ' class="gallery-portrait"' : '') + '><button type="button" class="gallery-preview" data-gallery-index="' + index + '" aria-label="Zoom ' + item.alt + '">' +
-            '<img src="' + item.src + '" alt="' + item.alt + '" loading="lazy" width="' + (item.width || 2936) + '" height="' + (item.height || 1656) + '"></button>' +
-            '<figcaption>' + item.caption + '</figcaption></figure>'
-          ).join('') + '</div>'
+          ? '<div class="project-gallery-carousel" tabindex="0" aria-roledescription="carousel" aria-label="Project screenshots">' +
+            '<div class="gallery-stage"><button type="button" class="gallery-arrow" data-stage-back aria-label="Previous image">←</button>' +
+            '<button type="button" class="gallery-stage-preview" aria-label="Zoom current image"><img alt=""></button>' +
+            '<button type="button" class="gallery-arrow" data-stage-next aria-label="Next image">→</button></div>' +
+            '<p class="gallery-stage-caption" aria-live="polite"></p>' +
+            '<div class="gallery-thumbnails">' + gallery.map((item, index) =>
+              '<button type="button" data-thumbnail-index="' + index + '" aria-label="Show ' + item.alt + '"><img src="' + item.src + '" alt="" loading="lazy"></button>'
+            ).join('') + '</div></div>'
           : '',
         project.demoUrl ? '<div class="project-demo"><h2>App demo</h2><video src="' + project.demoUrl + '" poster="' + project.mediaUrl + '" controls playsinline preload="metadata" aria-label="AI Fashion Stylist app demonstration"></video></div>' : '',
         '</section>',
@@ -167,19 +173,40 @@ document.addEventListener('DOMContentLoaded', () => {
           const image = viewer.querySelector('img');
           image.src = item.src;
           image.alt = item.alt;
+          const stageImage = projectDetail.querySelector('.gallery-stage-preview img');
+          stageImage.src = item.src;
+          stageImage.alt = item.alt;
+          projectDetail.querySelector('.gallery-stage-preview').setAttribute('aria-label', 'Zoom ' + item.alt);
+          projectDetail.querySelector('.gallery-stage-caption').textContent = item.caption + ' · ' + (activeImage + 1) + ' / ' + gallery.length;
+          projectDetail.querySelectorAll('[data-thumbnail-index]').forEach((button) => {
+            button.setAttribute('aria-pressed', String(Number(button.dataset.thumbnailIndex) === activeImage));
+          });
           viewer.querySelector('p').textContent = item.caption + ' · ' + (activeImage + 1) + ' / ' + gallery.length;
         };
-        projectDetail.querySelectorAll('[data-gallery-index]').forEach((button) => {
-          button.addEventListener('click', () => {
-            opener = button;
-            galleryScrollY = window.scrollY;
-            showImage(Number(button.dataset.galleryIndex));
-            document.body.style.setProperty('--gallery-scroll-offset', '-' + galleryScrollY + 'px');
-            document.documentElement.classList.add('gallery-open');
-            document.body.classList.add('gallery-open');
-            viewer.showModal();
-          });
+        const galleryCarousel = projectDetail.querySelector('.project-gallery-carousel');
+        galleryCarousel.querySelector('[data-stage-back]').addEventListener('click', () => showImage(activeImage - 1));
+        galleryCarousel.querySelector('[data-stage-next]').addEventListener('click', () => showImage(activeImage + 1));
+        galleryCarousel.querySelectorAll('[data-thumbnail-index]').forEach((button) => {
+          button.addEventListener('click', () => showImage(Number(button.dataset.thumbnailIndex)));
         });
+        galleryCarousel.addEventListener('keydown', (event) => {
+          if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+            event.preventDefault();
+            showImage(activeImage + (event.key === 'ArrowRight' ? 1 : -1));
+          }
+        });
+        galleryCarousel.querySelector('.gallery-stage-preview').addEventListener('click', (event) => {
+          opener = event.currentTarget;
+          galleryScrollY = window.scrollY;
+          document.body.style.setProperty('--gallery-scroll-offset', '-' + galleryScrollY + 'px');
+          document.documentElement.classList.add('gallery-open');
+          document.body.classList.add('gallery-open');
+          viewer.showModal();
+        });
+        showImage(0);
+        if (gallery.length === 1) {
+          galleryCarousel.querySelectorAll('.gallery-arrow').forEach((button) => { button.hidden = true; });
+        }
         viewer.querySelector('.gallery-close').addEventListener('click', () => viewer.close());
         viewer.querySelector('[data-gallery-back]').addEventListener('click', () => showImage(activeImage - 1));
         viewer.querySelector('[data-gallery-next]').addEventListener('click', () => showImage(activeImage + 1));
