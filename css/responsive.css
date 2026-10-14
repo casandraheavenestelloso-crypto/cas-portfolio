@@ -249,7 +249,13 @@ textarea:focus {
     --space:clamp(3rem,12vw,4.5rem);
   }
   body.nav-open { overflow: hidden; }
-  .site-header { padding:1rem 0; }
+  body { padding-top:var(--header-offset,76px); }
+  .site-header {
+    padding:1rem 0;
+    position:fixed;
+    inset:0 0 auto;
+    width:100%;
+  }
   .nav-menu {
     align-items:flex-end;
     background:var(--black);

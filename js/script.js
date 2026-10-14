@@ -153,6 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.append(viewer);
         let activeImage = 0;
         let opener;
+        let galleryScrollY = 0;
         const showImage = (index) => {
           activeImage = (index + project.gallery.length) % project.gallery.length;
           const item = project.gallery[activeImage];
@@ -164,9 +165,12 @@ document.addEventListener('DOMContentLoaded', () => {
         projectDetail.querySelectorAll('[data-gallery-index]').forEach((button) => {
           button.addEventListener('click', () => {
             opener = button;
+            galleryScrollY = window.scrollY;
             showImage(Number(button.dataset.galleryIndex));
-            viewer.showModal();
+            document.body.style.setProperty('--gallery-scroll-offset', '-' + galleryScrollY + 'px');
+            document.documentElement.classList.add('gallery-open');
             document.body.classList.add('gallery-open');
+            viewer.showModal();
           });
         });
         viewer.querySelector('.gallery-close').addEventListener('click', () => viewer.close());
@@ -183,6 +187,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         viewer.addEventListener('close', () => {
           document.body.classList.remove('gallery-open');
+          document.documentElement.classList.remove('gallery-open');
+          document.body.style.removeProperty('--gallery-scroll-offset');
+          window.scrollTo({ top: galleryScrollY, behavior: 'instant' });
           opener?.focus({ preventScroll: true });
         });
       }

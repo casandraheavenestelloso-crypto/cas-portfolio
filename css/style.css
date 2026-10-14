@@ -1198,7 +1198,16 @@ i.fa-solid.fa-arrow-up-right-from-square {
   outline:2px solid var(--pink);
   outline-offset:5px;
 }
-body.gallery-open { overflow:hidden; }
+html.gallery-open {
+  overflow:hidden;
+  overscroll-behavior:none;
+}
+body.gallery-open {
+  overflow:hidden;
+  position:fixed;
+  top:var(--gallery-scroll-offset,0px);
+  width:100%;
+}
 .gallery-viewer {
   position:fixed;
   inset:0;
