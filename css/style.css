@@ -1401,6 +1401,7 @@ body.gallery-open {
 }
 
 .hero-portrait {
+  --portrait-glow:255 255 255;
   position:relative;
   width:100%;
   max-width:560px;
@@ -1408,14 +1409,19 @@ body.gallery-open {
   margin:auto;
   isolation:isolate;
 }
+html[data-theme="light"] .hero-portrait {
+  --portrait-glow:0 0 0;
+}
 .hero-portrait-backdrop {
   position:absolute;
   z-index:0;
   inset:2% 7% 0 6%;
   background:var(--pink);
+  box-shadow:0 0 20px 6px rgb(var(--portrait-glow) / 38%),
+             0 0 52px 16px rgb(var(--portrait-glow) / 22%);
   border-radius:42% 58% 62% 38% / 48% 38% 62% 52%;
   transform:rotate(-17deg);
-  animation:portrait-blob 9s ease-in-out infinite alternate;
+  animation:portrait-backdrop-wiggle 5s ease-in-out infinite alternate;
 }
 .hero-portrait-cutout,
 .hero-portrait-photo {
@@ -1433,7 +1439,7 @@ body.gallery-open {
   z-index:2;
   overflow:hidden;
   border-radius:58% 42% 47% 53% / 56% 48% 52% 44%;
-  animation:portrait-blob 11s ease-in-out infinite alternate-reverse;
+  animation:portrait-blob 7s ease-in-out infinite alternate-reverse;
 }
 .hero-portrait-cutout img,
 .hero-portrait-photo img {
@@ -1449,9 +1455,23 @@ body.gallery-open {
   transform:translateY(-65%);
 }
 @keyframes portrait-blob {
-  0% { border-radius:58% 42% 47% 53% / 56% 48% 52% 44%; }
-  50% { border-radius:45% 55% 58% 42% / 48% 59% 41% 52%; }
-  100% { border-radius:52% 48% 39% 61% / 61% 43% 57% 39%; }
+  0% { border-radius:64% 36% 44% 56% / 62% 40% 60% 38%; }
+  50% { border-radius:40% 60% 64% 36% / 43% 65% 35% 57%; }
+  100% { border-radius:56% 44% 34% 66% / 66% 36% 64% 34%; }
+}
+@keyframes portrait-backdrop-wiggle {
+  0% {
+    border-radius:38% 62% 66% 34% / 54% 34% 66% 46%;
+    transform:rotate(-22deg) scale(1);
+  }
+  50% {
+    border-radius:62% 38% 42% 58% / 36% 62% 38% 64%;
+    transform:rotate(-12deg) scale(1.035);
+  }
+  100% {
+    border-radius:46% 54% 32% 68% / 64% 42% 58% 36%;
+    transform:rotate(-5deg) scale(1);
+  }
 }
 @media (max-width:768px) {
   .hero-portrait { max-width:420px; }
