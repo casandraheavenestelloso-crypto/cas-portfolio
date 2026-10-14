@@ -237,10 +237,6 @@ textarea:focus {
     flex-basis:clamp(320px,24vw,400px);
   }
 
-  .project-card img {
-    aspect-ratio:1.9;
-  }
-
   .contact-page {
     min-height: calc(100svh - var(--header-offset));
     padding-block: clamp(2.5rem, 6vw, 5rem);

@@ -463,10 +463,15 @@ h1 span,h2 span {
   opacity:1;
   transform:scale(.98)
 }
-.project-card img {
-  aspect-ratio:1.55;
-  object-fit:cover;
-  width:100%
+.project-card img,
+.project-card video {
+  display:block;
+  height:auto;
+  object-fit:contain;
+  width:calc(100% - 1.5rem);
+  margin:.75rem .75rem 0;
+  border:1px solid #17101726;
+  border-radius:.35rem
 }
 .project-content {
   padding:1.5rem
@@ -668,7 +673,7 @@ h1 span,h2 span {
 .project-gallery .gallery-portrait .gallery-preview {
   display:flex;
   justify-content:center;
-  background:#141117
+  background:transparent
 }
 .project-gallery .gallery-portrait img {
   width:auto;
