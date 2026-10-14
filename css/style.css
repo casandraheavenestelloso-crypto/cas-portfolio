@@ -635,26 +635,33 @@ h1 span,h2 span {
   margin-bottom:2rem;
   text-wrap:balance
 }
-.project-overview--extended {
+ .project-heading-layout {
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
+  column-gap:clamp(2rem,5vw,4rem);
   align-items:start;
-  gap:clamp(2rem,5vw,5rem)
 }
-.project-overview .lead {
-  max-width:65ch
+.project-heading-copy { grid-column:1; grid-row:1; }
+.project-heading-actions { grid-column:1; grid-row:2; }
+.project-cover { grid-column:2; grid-row:1 / span 2; }
+.project-cover img,
+.project-cover video {
+  display:block;
+  width:100%;
+  height:auto;
+  object-fit:contain;
+  border:1px solid var(--line);
+  border-radius:.5rem;
 }
+.project-heading-layout h1 { font-size:clamp(2.2rem,3.5vw,3.25rem); }
+.project-description { margin-top:3rem; }
+.project-description .lead { max-width:80ch; }
 .project-explanation {
   display:grid;
   align-content:start;
-  gap:1.5rem
-}
-.project-overview--extended h1 {
-  font-size:clamp(2.2rem,3.5vw,3.25rem)
-}
-.project-technology {
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:2rem;
   margin-top:2rem;
-  gap:0
 }
 .project-explanation h2 {
   font-size:1.1rem;
@@ -671,10 +678,13 @@ h1 span,h2 span {
   grid-template-columns:1fr
 }
 @media (max-width:768px) {
-  .project-overview--extended {
-    grid-template-columns:1fr;
-    gap:2rem
-  }
+  .project-heading-layout,
+  .project-explanation { grid-template-columns:1fr; }
+  .project-heading-copy,
+  .project-heading-actions,
+  .project-cover { grid-column:auto; grid-row:auto; }
+  .project-cover { margin-bottom:.5rem; }
+  .project-description { margin-top:2rem; }
 }
 .project-detail-hero .tag-row {
   margin:1.6rem 0 2rem
@@ -1227,9 +1237,25 @@ html[data-theme="light"] .brand-repeat .icon-faire {
   transform: translate(-50%, 0);
 }
 
-i.fa-solid.fa-arrow-right,
-i.fa-solid.fa-arrow-up-right-from-square {
-  line-height: unset !important;
+.button,
+.text-link,
+.card-link,
+.email-link,
+.read-more {
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+}
+.button > i,
+.text-link > i,
+.card-link > i,
+.email-link > i,
+.read-more > i {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+  line-height:1;
 }
 
 .gallery-preview {
