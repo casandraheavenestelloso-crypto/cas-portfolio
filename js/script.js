@@ -122,34 +122,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (project) {
       document.title = project.title + ' - CAS';
+      const gallery = (project.gallery || []).filter((item) => decodeURIComponent(item.src) !== decodeURIComponent(project.mediaUrl || ''));
+      const hasLongDetails = Boolean(project.detailParagraphs?.length);
       projectDetail.innerHTML = [
         '<section class="project-detail-hero container">',
-        '<a class="text-link" href="projects.html"><i class="fa-solid fa-arrow-left"></i> Back to projects</a>',
         '<div class="project-heading-layout"><div class="project-heading-copy">',
+        '<a class="text-link" href="projects.html"><i class="fa-solid fa-arrow-left"></i> Back to projects</a>',
         '<p class="eyebrow">' + project.category + '</p>',
         '<h1>' + project.title + '</h1>',
-        '</div>',
-        '<div class="project-cover">' + renderProjectMedia(project, true) + '</div>',
-        '<div class="project-heading-actions">',
+        '<div class="project-mobile-cover">' + renderProjectMedia(project, true) + '</div>',
         '<div class="tag-row">' + renderTags(project.tags) + '</div>',
         project.projectUrl ? '<a class="button" href="' + project.projectUrl + '" target="_blank" rel="noreferrer">Visit Project <i class="fa-solid fa-arrow-up-right-from-square"></i></a>' : '',
-        '</div></div>',
-        '<div class="project-description"><p class="lead">' + project.longDescription + '</p>',
-        project.detailParagraphs?.length ? '<div class="project-explanation">' + project.detailParagraphs.map((paragraph, index) => '<div><h2>' + (['How it works', 'Customer and store benefits', 'Technology and hosting'][index] || 'Project details') + '</h2><p>' + paragraph + '</p></div>').join('') + '</div>' : '',
-        '</div>',
+        '<p class="project-summary lead">' + (hasLongDetails ? project.description : project.longDescription) + '</p>',
+        '</div><div class="project-cover">' + renderProjectMedia(project, true) + '</div></div>',
+        hasLongDetails ? '<div class="project-description"><p class="lead">' + project.longDescription + '</p><div class="project-explanation">' + project.detailParagraphs.map((paragraph, index) => '<div><h2>' + (['How it works', 'Customer and store benefits', 'Technology and hosting'][index] || 'Project details') + '</h2><p>' + paragraph + '</p></div>').join('') + '</div></div>' : '',
         '</section>',
         '<section class="project-detail-media container" aria-label="Project gallery">',
-        project.gallery?.length
-          ? '<div class="project-gallery">' + project.gallery.map((item, index) =>
+        gallery.length
+          ? '<div class="project-gallery">' + gallery.map((item, index) =>
             '<figure' + (item.height > item.width ? ' class="gallery-portrait"' : '') + '><button type="button" class="gallery-preview" data-gallery-index="' + index + '" aria-label="Zoom ' + item.alt + '">' +
             '<img src="' + item.src + '" alt="' + item.alt + '" loading="lazy" width="' + (item.width || 2936) + '" height="' + (item.height || 1656) + '"></button>' +
             '<figcaption>' + item.caption + '</figcaption></figure>'
           ).join('') + '</div>'
-          : renderProjectMedia(project, true),
+          : '',
         project.demoUrl ? '<div class="project-demo"><h2>App demo</h2><video src="' + project.demoUrl + '" poster="' + project.mediaUrl + '" controls playsinline preload="metadata" aria-label="AI Fashion Stylist app demonstration"></video></div>' : '',
         '</section>',
       ].join('');
-      if (project.gallery?.length) {
+      if (gallery.length) {
         const viewer = document.createElement('dialog');
         viewer.className = 'gallery-viewer';
         viewer.setAttribute('aria-label', project.title + ' image gallery');
@@ -163,12 +162,12 @@ document.addEventListener('DOMContentLoaded', () => {
         let opener;
         let galleryScrollY = 0;
         const showImage = (index) => {
-          activeImage = (index + project.gallery.length) % project.gallery.length;
-          const item = project.gallery[activeImage];
+          activeImage = (index + gallery.length) % gallery.length;
+          const item = gallery[activeImage];
           const image = viewer.querySelector('img');
           image.src = item.src;
           image.alt = item.alt;
-          viewer.querySelector('p').textContent = item.caption + ' · ' + (activeImage + 1) + ' / ' + project.gallery.length;
+          viewer.querySelector('p').textContent = item.caption + ' · ' + (activeImage + 1) + ' / ' + gallery.length;
         };
         projectDetail.querySelectorAll('[data-gallery-index]').forEach((button) => {
           button.addEventListener('click', () => {
