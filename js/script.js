@@ -105,7 +105,6 @@ document.addEventListener('DOMContentLoaded', () => {
       '<a class="project-template reveal" href="' + projectLink(project.slug) + '">',
       renderProjectMedia(project),
       '<div class="project-content">',
-      '<p class="card-kicker">' + project.category + '</p>',
       '<h3>' + project.title + '</h3>',
       '<p>' + project.description + '</p>',
       '<div class="tag-row">' + renderTags(project.tags) + '</div>',
@@ -132,10 +131,61 @@ document.addEventListener('DOMContentLoaded', () => {
         '<div class="tag-row">' + renderTags(project.tags) + '</div>',
         project.projectUrl ? '<a class="button" href="' + project.projectUrl + '" target="_blank" rel="noreferrer">Visit Project <i class="fa-solid fa-arrow-up-right-from-square"></i></a>' : '',
         '</section>',
-        '<section class="project-detail-media container">',
-        renderProjectMedia(project, true),
+        '<section class="project-detail-media container" aria-label="Project gallery">',
+        project.gallery?.length
+          ? '<div class="project-gallery">' + project.gallery.map((item, index) =>
+            '<figure' + (item.height > item.width ? ' class="gallery-portrait"' : '') + '><button type="button" class="gallery-preview" data-gallery-index="' + index + '" aria-label="Zoom ' + item.alt + '">' +
+            '<img src="' + item.src + '" alt="' + item.alt + '" loading="lazy" width="' + (item.width || 2936) + '" height="' + (item.height || 1656) + '"></button>' +
+            '<figcaption>' + item.caption + '</figcaption></figure>'
+          ).join('') + '</div>'
+          : renderProjectMedia(project, true),
         '</section>',
       ].join('');
+      if (project.gallery?.length) {
+        const viewer = document.createElement('dialog');
+        viewer.className = 'gallery-viewer';
+        viewer.setAttribute('aria-label', project.title + ' image gallery');
+        viewer.innerHTML = '<div class="gallery-viewer-panel">' +
+          '<button type="button" class="gallery-close" aria-label="Close gallery" autofocus><span aria-hidden="true">×</span></button>' +
+          '<img class="gallery-zoom-image" alt="">' +
+          '<div class="gallery-viewer-controls"><button type="button" data-gallery-back>← Back</button>' +
+          '<p aria-live="polite"></p><button type="button" data-gallery-next>Next →</button></div></div>';
+        document.body.append(viewer);
+        let activeImage = 0;
+        let opener;
+        const showImage = (index) => {
+          activeImage = (index + project.gallery.length) % project.gallery.length;
+          const item = project.gallery[activeImage];
+          const image = viewer.querySelector('img');
+          image.src = item.src;
+          image.alt = item.alt;
+          viewer.querySelector('p').textContent = item.caption + ' · ' + (activeImage + 1) + ' / ' + project.gallery.length;
+        };
+        projectDetail.querySelectorAll('[data-gallery-index]').forEach((button) => {
+          button.addEventListener('click', () => {
+            opener = button;
+            showImage(Number(button.dataset.galleryIndex));
+            viewer.showModal();
+            document.body.classList.add('gallery-open');
+          });
+        });
+        viewer.querySelector('.gallery-close').addEventListener('click', () => viewer.close());
+        viewer.querySelector('[data-gallery-back]').addEventListener('click', () => showImage(activeImage - 1));
+        viewer.querySelector('[data-gallery-next]').addEventListener('click', () => showImage(activeImage + 1));
+        viewer.addEventListener('click', (event) => {
+          if (event.target === viewer) viewer.close();
+        });
+        viewer.addEventListener('keydown', (event) => {
+          if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+            event.preventDefault();
+            showImage(activeImage + (event.key === 'ArrowRight' ? 1 : -1));
+          }
+        });
+        viewer.addEventListener('close', () => {
+          document.body.classList.remove('gallery-open');
+          opener?.focus({ preventScroll: true });
+        });
+      }
     } else {
       projectDetail.innerHTML = [
         '<section class="page-hero container">',
@@ -212,7 +262,6 @@ document.addEventListener('DOMContentLoaded', () => {
       '<article class="project-card">',
       renderProjectMedia(project),
       '<div class="project-content">',
-      '<p class="card-kicker">' + project.category + '</p>',
       '<h3>' + project.title + '</h3>',
       '<p>' + project.description + '</p>',
       '<div class="tag-row">' + renderTags(project.tags) + '</div>',
@@ -385,6 +434,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     carousel.tabIndex = 0;
     carouselWindow.addEventListener('pointerdown', (event) => {
+      if (event.target.closest('a, button')) {
+        didDrag = false;
+        pauseAutoplay(autoplayDelay);
+        return;
+      }
       if (isSliding || event.button > 0) return;
 
       pauseAutoplay();
@@ -441,14 +495,6 @@ document.addEventListener('DOMContentLoaded', () => {
       event.stopPropagation();
       didDrag = false;
     }, true);
-    carousel.addEventListener('click', (event) => {
-      if (didDrag || event.target.closest('a, button')) return;
-
-      const card = event.target.closest('.project-card');
-      const link = card?.querySelector('.card-link');
-
-      if (link?.href) window.location.href = link.href;
-    });
 
     globalThis.addEventListener('resize', () => show(current));
     show(current, false);

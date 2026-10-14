@@ -189,6 +189,18 @@ textarea:focus {
   }
 
   /* Project listings are a continuous page: keep their heading attached to the grid. */
+  main[data-project-detail] > section {
+    display:block;
+    height:auto;
+    min-height:0;
+    scroll-snap-align:none;
+    scroll-snap-stop:normal;
+  }
+
+  html:has(main[data-project-detail]) {
+    scroll-snap-type:none;
+  }
+
   body[data-page="projects"] main > .projects-page {
     display:block;
     height:auto;
