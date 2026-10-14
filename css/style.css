@@ -599,10 +599,12 @@ h1 span,h2 span {
 }
 .project-template img,
 .project-template video {
-  aspect-ratio:1.35;
-  background:#09080a;
-  object-fit:cover;
-  width:100%
+  height:auto;
+  object-fit:contain;
+  width:calc(100% - 1.5rem);
+  margin:.75rem .75rem 0;
+  border:1px solid var(--line);
+  border-radius:.35rem
 }
 .project-template .project-content {
   color:var(--white)
@@ -627,7 +629,43 @@ h1 span,h2 span {
   margin-bottom:2rem
 }
 .project-detail-hero h1 {
-  max-width:900px
+  max-width:1000px;
+  font-size:clamp(2.2rem,5vw,4.5rem);
+  line-height:1.08;
+  margin-bottom:2rem;
+  text-wrap:balance
+}
+.project-overview--extended {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);
+  gap:clamp(2rem,5vw,5rem)
+}
+.project-overview .lead {
+  max-width:65ch
+}
+.project-explanation {
+  display:grid;
+  gap:1.5rem
+}
+.project-explanation h2 {
+  font-size:1.1rem;
+  letter-spacing:-.02em;
+  margin:0 0 .65rem
+}
+.project-explanation p {
+  color:var(--gray);
+  font-size:.95rem;
+  line-height:1.75;
+  margin:0
+}
+.project-gallery:has(figure:only-child) {
+  grid-template-columns:1fr
+}
+@media (max-width:768px) {
+  .project-overview--extended {
+    grid-template-columns:1fr;
+    gap:2rem
+  }
 }
 .project-detail-hero .tag-row {
   margin:1.6rem 0 2rem
