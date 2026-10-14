@@ -1400,6 +1400,67 @@ body.gallery-open {
   color:var(--gray);
 }
 
+.hero-portrait {
+  position:relative;
+  width:100%;
+  max-width:560px;
+  aspect-ratio:1.12;
+  margin:auto;
+  isolation:isolate;
+}
+.hero-portrait-backdrop {
+  position:absolute;
+  z-index:0;
+  inset:2% 7% 0 6%;
+  background:var(--pink);
+  border-radius:42% 58% 62% 38% / 48% 38% 62% 52%;
+  transform:rotate(-17deg);
+  animation:portrait-blob 9s ease-in-out infinite alternate;
+}
+.hero-portrait-cutout,
+.hero-portrait-photo {
+  position:absolute;
+  inset:8% 1% 7%;
+  margin:0;
+}
+.hero-portrait-cutout {
+  z-index:1;
+  pointer-events:none;
+  /* Reveal the head above the blob without exposing the torso below it. */
+  clip-path:inset(-100% 0 50%);
+}
+.hero-portrait-photo {
+  z-index:2;
+  overflow:hidden;
+  border-radius:58% 42% 47% 53% / 56% 48% 52% 44%;
+  animation:portrait-blob 11s ease-in-out infinite alternate-reverse;
+}
+.hero-portrait-cutout img,
+.hero-portrait-photo img {
+  /* Both files share the same photo canvas; keep their features registered. */
+  position:absolute;
+  top:65%;
+  left:0;
+  display:block;
+  width:100%;
+  height:auto;
+  aspect-ratio:724 / 1086;
+  object-fit:fill;
+  transform:translateY(-65%);
+}
+@keyframes portrait-blob {
+  0% { border-radius:58% 42% 47% 53% / 56% 48% 52% 44%; }
+  50% { border-radius:45% 55% 58% 42% / 48% 59% 41% 52%; }
+  100% { border-radius:52% 48% 39% 61% / 61% 43% 57% 39%; }
+}
+@media (max-width:768px) {
+  .hero-portrait { max-width:420px; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .hero-portrait-backdrop,
+  .hero-portrait-photo { animation:none; }
+}
+
 .project-gallery-carousel { width:100%; }
 .gallery-stage {
   display:flex;
