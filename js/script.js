@@ -128,6 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
         '<p class="eyebrow">' + project.category + '</p>',
         '<h1>' + project.title + '</h1>',
         '<p class="lead">' + project.longDescription + '</p>',
+        (project.detailParagraphs || []).map((paragraph) => '<p class="lead">' + paragraph + '</p>').join(''),
         '<div class="tag-row">' + renderTags(project.tags) + '</div>',
         project.projectUrl ? '<a class="button" href="' + project.projectUrl + '" target="_blank" rel="noreferrer">Visit Project <i class="fa-solid fa-arrow-up-right-from-square"></i></a>' : '',
         '</section>',
@@ -139,6 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
             '<figcaption>' + item.caption + '</figcaption></figure>'
           ).join('') + '</div>'
           : renderProjectMedia(project, true),
+        project.demoUrl ? '<div class="project-demo"><h2>App demo</h2><video src="' + project.demoUrl + '" poster="' + project.mediaUrl + '" controls playsinline preload="metadata" aria-label="AI Fashion Stylist app demonstration"></video></div>' : '',
         '</section>',
       ].join('');
       if (project.gallery?.length) {

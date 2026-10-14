@@ -1281,3 +1281,13 @@ body.gallery-open {
   .gallery-viewer-controls button { padding:.6rem .75rem; flex-shrink:0; }
   .gallery-viewer-controls p { font-size:.7rem; }
 }
+
+.project-demo {
+  margin-top:2.5rem;
+  width:100%;
+}
+.project-demo h2 {
+  font-size:clamp(1.4rem,3vw,2rem);
+  margin-bottom:1rem;
+}
+.project-demo video { display:block; }
