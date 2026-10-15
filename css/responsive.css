@@ -150,6 +150,15 @@ textarea:focus {
   animation: soft-float 900ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
 }
 
+/* Project listing: 4 columns on wide screens, then 3, 2, and 1 as space narrows. */
+@media (min-width:901px) and (max-width:1200px) {
+  .projects-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
+}
+
+@media (min-width:701px) and (max-width:900px) {
+  .projects-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+
 @keyframes soft-float {
   0% { filter: brightness(1.35); }
   100% { filter: brightness(1); }
@@ -327,19 +336,19 @@ textarea:focus {
     align-items:stretch;
     display:flex;
     flex-direction:column;
-    gap:1.6rem;
+    gap:.7rem;
     grid-template-columns:1fr;
     min-height:unset;
     padding:2.5rem 0 3.5rem;
   }
   /* Let the portrait sit between the role and introductory copy on phones. */
   .hero-copy { display:contents; }
-  .hero-copy .eyebrow { order:1; }
-  .hero-copy h1 { order:2; }
-  .hero-copy .hero-title { order:3; }
+  .hero-copy .eyebrow { order:1; margin:0; }
+  .hero-copy h1 { order:2; margin:0; }
+  .hero-copy .hero-title { order:3; margin:.1rem 0 .5rem; }
   .hero-portrait { order:4; }
-  .hero-copy .lead { order:5; }
-  .hero-copy .button-row { order:6; }
+  .hero-copy .lead { order:5; margin:.8rem 0 0; }
+  .hero-copy .button-row { order:6; margin-top:.75rem; }
   .portrait-stack { min-height: 360px; }
   .portrait-small { height: 260px; }
   .portrait-tall { height: 355px; }
