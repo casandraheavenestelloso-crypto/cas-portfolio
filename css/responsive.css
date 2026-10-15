@@ -305,6 +305,12 @@ textarea:focus {
     order:1;
     z-index:24;
     flex-shrink:0;
+    transition:opacity .18s ease, visibility .18s ease;
+  }
+  body.nav-open .nav > .theme-toggle {
+    opacity:0;
+    pointer-events:none;
+    visibility:hidden;
   }
   .menu-toggle {
     display:block;
@@ -317,7 +323,23 @@ textarea:focus {
   h2 { font-size:clamp(2.2rem,11vw,3.5rem); margin-bottom:1rem; }
   .lead { font-size:.95rem; }
   .button-row { gap:1rem; margin-top:1.4rem; }
-  .hero { grid-template-columns: 1fr; min-height: unset; padding: 2.5rem 0 3.5rem; display: flex; flex-direction: column-reverse; gap:1.6rem; }
+  .hero {
+    align-items:stretch;
+    display:flex;
+    flex-direction:column;
+    gap:1.6rem;
+    grid-template-columns:1fr;
+    min-height:unset;
+    padding:2.5rem 0 3.5rem;
+  }
+  /* Let the portrait sit between the role and introductory copy on phones. */
+  .hero-copy { display:contents; }
+  .hero-copy .eyebrow { order:1; }
+  .hero-copy h1 { order:2; }
+  .hero-copy .hero-title { order:3; }
+  .hero-portrait { order:4; }
+  .hero-copy .lead { order:5; }
+  .hero-copy .button-row { order:6; }
   .portrait-stack { min-height: 360px; }
   .portrait-small { height: 260px; }
   .portrait-tall { height: 355px; }
@@ -342,7 +364,7 @@ textarea:focus {
   .project-card { flex-basis:min(76vw,340px); }
   .project-more { margin-top:1rem; }
   .skill-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .projects-grid { grid-template-columns: repeat(2, 1fr); }
+  .projects-grid { grid-template-columns:1fr; }
   .skill { min-height: 120px; }
   .tool-list { grid-template-columns: repeat(4, 72px); justify-content:center; }
   .tool-list div:nth-child(4n) { border-right: 0; }
@@ -380,33 +402,6 @@ textarea:focus {
   .tool-list div:nth-child(3n) { border-right: 0; }
   .footer-grid { grid-template-columns: 1fr; }
   .statement { padding-top: 3rem; }
-}
-
-/* Compact the Core Stack so it remains scannable on tablets and phones. */
-@media (min-width: 701px) and (max-width: 1024px) {
-  body[data-page="home"] .skills {
-    display:block;
-    height:auto;
-    min-height:0;
-    padding-block:clamp(3rem,7vw,4.5rem);
-  }
-  .skills .section-intro h2 { font-size:clamp(2.8rem,7vw,4.5rem); }
-  .skills .skill-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
-  .skills .skill { min-height:180px; padding:1.25rem; }
-  .skills .skill h3 { font-size:1rem; margin-top:1.4rem; }
-  .skills .skill-icon-list { gap:.65rem; margin-top:.8rem; }
-}
-
-@media (max-width: 700px) {
-  .skills { padding-block:3.25rem; }
-  .skills .section-intro { margin-bottom:1.5rem; }
-  .skills .section-intro h2 { font-size:clamp(2.45rem,12vw,3.55rem); line-height:.98; }
-  .skills .skill-grid { gap:.7rem; grid-template-columns:1fr; }
-  .skills .skill { min-height:0; padding:1.15rem 1.25rem; }
-  .skills .skill h3 { font-size:1rem; margin:1rem 0 0; }
-  .skills .skill > i { font-size:1.45rem; }
-  .skills .skill-icon-list { gap:.7rem; margin-top:.75rem; }
-  .skills .skill-icon-list span { font-size:1.2rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
