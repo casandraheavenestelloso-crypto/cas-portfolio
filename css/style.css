@@ -1597,8 +1597,9 @@ html[data-theme="light"] .hero-portrait {
     display:grid;
     place-items:center;
     min-width:0;
-    width:100%;
+    width:calc(100% - .75rem);
     max-width:100%;
+    margin-inline:auto;
     height:auto;
     aspect-ratio:4 / 3;
     max-height:65svh;
