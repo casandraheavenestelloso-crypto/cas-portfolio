@@ -14,7 +14,7 @@ Sora (Google Fonts) and Font Awesome icons load from public CDNs. The website it
 
 ## Contact form
 
-The form validates only in the browser and does not send messages. Connect the submit handler to your backend or a service such as Formspree, Netlify Forms, or EmailJS before publishing.
+The contact form sends inquiries through Web3Forms using the public access key in contact.html. Messages go to the email address associated with that key. The form validates fields, includes a spam honeypot, prevents duplicate submissions while sending, and shows success or error feedback without leaving the page. Failed submissions preserve the visitor’s message for retrying. To change the receiving inbox, create a Web3Forms access key for that email and replace the access_key value in contact.html.
 
 ## Included
 

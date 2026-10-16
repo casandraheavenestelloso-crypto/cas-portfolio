@@ -45,7 +45,10 @@ Have a store, website, or fresh idea? Let’s build a responsive experience that
             </a>
           </div>
         </div>
-        <form class="contact-form reveal" novalidate>
+        <form class="contact-form reveal" action="https://api.web3forms.com/submit" method="POST" novalidate>
+          <input type="hidden" name="access_key" value="a1b6c31f-3540-4bf5-b3c6-511da58187a6">
+          <input type="hidden" name="from_name" value="CAS Portfolio">
+          <input type="checkbox" name="botcheck" hidden tabindex="-1" autocomplete="off">
           <div class="form-row">
             <div class="field">
               <label for="name">
@@ -92,7 +95,7 @@ Have a store, website, or fresh idea? Let’s build a responsive experience that
       </section>
     </main>
     <script src="js/components.js?v=28"></script>
-    <script src="js/script.js?v=27">
+    <script src="js/script.js?v=28">
     </script>
   </body>
 </html>

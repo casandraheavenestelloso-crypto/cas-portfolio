@@ -545,8 +545,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const form = document.querySelector('.contact-form');
 
   if (form) {
-    form.addEventListener('submit', (event) => {
+    let isSubmitting = false;
+    form.addEventListener('submit', async (event) => {
       event.preventDefault();
+      if (isSubmitting) return;
       let isValid = true;
 
       form.querySelectorAll('[required]').forEach((input) => {
@@ -562,10 +564,46 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       const feedback = form.querySelector('.form-feedback');
-      feedback.textContent = isValid
-        ? 'Thanks! Your message is ready to send—connect this form to a service to receive it.'
-        : 'Please correct the fields highlighted above.';
-      feedback.className = 'form-feedback ' + (isValid ? 'success' : 'error');
+      if (!isValid) {
+        feedback.textContent = 'Please correct the fields highlighted above.';
+        feedback.className = 'form-feedback error';
+        form.querySelector('[aria-invalid="true"]')?.focus();
+        return;
+      }
+      if (form.elements.namedItem('botcheck').checked) return;
+
+      const submitButton = form.querySelector('[type="submit"]');
+      const buttonContent = submitButton.innerHTML;
+      const payload = Object.fromEntries(new FormData(form));
+      isSubmitting = true;
+      submitButton.disabled = true;
+      submitButton.textContent = 'Sending…';
+      form.setAttribute('aria-busy', 'true');
+      feedback.textContent = 'Sending your inquiry…';
+      feedback.className = 'form-feedback';
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify(payload),
+          signal: AbortSignal.timeout(20000),
+        });
+        const result = await response.json();
+        if (!response.ok || !result.success) throw new Error('Submission failed');
+
+        form.reset();
+        feedback.textContent = 'Thanks! Your inquiry has been sent. I’ll get back to you soon.';
+        feedback.className = 'form-feedback success';
+      } catch (error) {
+        feedback.textContent = 'Your inquiry could not be confirmed. Please try again or use the Get in Touch email link.';
+        feedback.className = 'form-feedback error';
+      } finally {
+        isSubmitting = false;
+        submitButton.disabled = false;
+        submitButton.innerHTML = buttonContent;
+        form.removeAttribute('aria-busy');
+      }
     });
   }
 });
