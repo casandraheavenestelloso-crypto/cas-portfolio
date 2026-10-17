@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
         project.projectUrl ? '<a class="button" href="' + project.projectUrl + '" target="_blank" rel="noreferrer">Visit Project <i class="fa-solid fa-arrow-up-right-from-square"></i></a>' : '',
         '<p class="project-summary lead">' + (hasLongDetails ? project.description : project.longDescription) + '</p>',
         '</div><div class="project-cover">' + renderProjectMedia(project, true) + '</div></div>',
-        hasLongDetails ? '<div class="project-description"><p class="lead">' + project.longDescription + '</p><div class="project-explanation">' + project.detailParagraphs.map((paragraph, index) => '<div><h2>' + (['How it works', 'Customer and store benefits', 'Technology and hosting'][index] || 'Project details') + '</h2><p>' + paragraph + '</p></div>').join('') + '</div></div>' : '',
+        hasLongDetails ? '<div class="project-description"><p class="lead">' + project.longDescription + '</p><div class="project-explanation">' + project.detailParagraphs.map((paragraph, index) => '<div><h2>' + (['How it works', 'Who it helps', 'Technology and hosting'][index] || 'Project details') + '</h2><p>' + paragraph + '</p></div>').join('') + '</div></div>' : '',
         '</section>',
         '<section class="project-detail-media container" aria-label="Project gallery">',
         gallery.length
@@ -151,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
               '<button type="button" data-thumbnail-index="' + index + '" aria-label="Show ' + item.alt + '"><img src="' + item.src + '" alt="" loading="lazy"></button>'
             ).join('') + '</div></div>'
           : '',
-        project.demoUrl ? '<div class="project-demo"><h2>App demo</h2><video src="' + project.demoUrl + '" poster="' + project.mediaUrl + '" controls playsinline preload="metadata" aria-label="AI Fashion Stylist app demonstration"></video></div>' : '',
+        project.demoUrl ? '<div class="project-demo"><h2>App demo</h2><video src="' + project.demoUrl + '" poster="' + project.mediaUrl + '" controls playsinline preload="metadata" aria-label="' + project.title + ' app demonstration"></video></div>' : '',
         '</section>',
       ].join('');
       if (gallery.length) {
