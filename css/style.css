@@ -350,8 +350,14 @@ h1 span,h2 span {
   grid-template-columns:repeat(4,1fr)
 }
 .skills .skill-grid {
+  display:flex;
+  flex-wrap:wrap;
   justify-content:center;
-  grid-template-columns:repeat(auto-fit,minmax(210px,250px))
+}
+.skills .skill-grid > .skill {
+  flex:0 1 250px;
+  min-width:0;
+  width:100%;
 }
 .skill {
   background:#131214;
@@ -764,8 +770,8 @@ h1 span,h2 span {
 .tool-list {
   border-bottom:1px solid var(--line);
   border-top:1px solid var(--line);
-  display:grid;
-  grid-template-columns:repeat(auto-fit,80px);
+  display:flex;
+  flex-wrap:wrap;
   justify-content:center
 }
 .skill-icon-list {
@@ -803,7 +809,7 @@ h1 span,h2 span {
 .skill-icon-list span:focus-visible b { opacity:1; transform:translate(-50%,0); }
 .skill-icon-list span:focus-visible { outline:2px solid var(--pink); outline-offset:4px; }
 .tool-list div {
-  border-right:1px solid var(--line);
+  flex:0 0 80px;
   display:grid;
   min-height:92px;
   padding:1.4rem 1rem;

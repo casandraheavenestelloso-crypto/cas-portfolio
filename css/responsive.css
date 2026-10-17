@@ -235,17 +235,20 @@ textarea:focus {
 
   body[data-page="about"] main > .about-opening {
     grid-template-columns:minmax(0,1fr) clamp(280px,28vw,340px);
+    grid-template-rows:min-content min-content minmax(0,1fr);
+    min-height:calc(100svh - var(--header-offset));
+    padding-bottom:clamp(4rem,12svh,8rem);
     column-gap:clamp(2rem,5vw,4rem);
   }
   .about-opening > .eyebrow,
   .about-opening > h1 { grid-column:1; }
   .about-opening-body { display:contents; }
-  .about-opening-bio { grid-column:1; grid-row:3; }
+  .about-opening-bio { grid-column:1; grid-row:3; align-self:start; }
   .about-opening .about-resume-card {
     grid-column:2;
     grid-row:1 / span 3;
-    align-self:start;
-    margin-top:-1rem;
+    align-self:center;
+    margin-top:0;
   }
 
   body:is([data-page="about"], [data-page="projects"]) .page-hero > .eyebrow {
@@ -291,7 +294,7 @@ textarea:focus {
   }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 768px) {
   :root {
     --container:min(640px,calc(100% - 3rem));
     --space:clamp(3rem,12vw,4.5rem);
@@ -415,11 +418,9 @@ textarea:focus {
   .carousel-window { padding:.5rem 0 1.3rem; }
   .project-card { flex-basis:min(76vw,340px); }
   .project-more { margin-top:1rem; }
-  .skill-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .projects-grid { grid-template-columns:1fr; }
   .skill { min-height: 120px; }
-  .tool-list { grid-template-columns: repeat(4, 72px); justify-content:center; }
-  .tool-list div:nth-child(4n) { border-right: 0; }
+  .tool-list div { flex-basis:72px; }
   .about-preview, .about-detail, .contact-page { gap: 2.25rem; grid-template-columns: 1fr; }
   .experience-card { grid-template-columns: 1fr; }
   .experience-card .date { margin-bottom: -1rem; }
@@ -480,6 +481,21 @@ textarea:focus {
   .site-footer { margin-top:3rem; padding-top:2.25rem; }
 }
 
+/* Small tablets share the compact layout; keep a useful two-column project grid. */
+@media (min-width:701px) and (max-width:768px) {
+  .projects-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+
+@media (max-width:768px) {
+  html { scroll-padding-top:var(--header-offset,76px); }
+  .about-opening-body { gap:2rem; }
+  .about-resume-card { justify-self:center; }
+  .about-cta-container { padding-block:var(--space); }
+  .about-cta { width:100%; }
+  .footer-grid > * { min-width:0; }
+  .footer-grid p { margin-bottom:0; }
+}
+
 @media (max-width: 430px) {
   :root {
     --container:calc(100% - 3rem);
@@ -492,9 +508,7 @@ textarea:focus {
   .brand-repeat { gap:1.15rem 1.6rem; max-width:310px; }
   .project-card { flex-basis:82vw; }
   .project-content { padding: 1.1rem; }
-  .tool-list { grid-template-columns: repeat(3, 72px); justify-content:center; }
   .projects-grid { grid-template-columns: 1fr; }
-  .tool-list div:nth-child(3n) { border-right: 0; }
   .footer-grid { grid-template-columns: 1fr; }
   .statement { padding-top: 3rem; }
 }
