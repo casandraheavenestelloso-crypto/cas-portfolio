@@ -2,15 +2,15 @@
   "name": "Casandra Heaven R. Estelloso",
   "role": "Full-Stack Web Developer",
   "location": "Bacolod City, Philippines",
-  "overview": "Full-stack web developer with experience in ecommerce storefronts, custom web applications, and website maintenance. Works across Shopify, WordPress, BigCommerce, Wix, and Squarespace, with hands-on experience in theme customization, API integrations, and AI-connected applications. Combines responsive frontend development, backend programming, and clear written communication to support practical business needs.",
+  "overview": "Full-stack web developer with experience in WordPress and CMS development, Shopify storefronts, custom web applications, and website maintenance. Builds and updates WordPress websites with Elementor, custom page layouts, content management, and form integrations. Also works across BigCommerce, Wix, and Squarespace, combining theme customization, API integrations, and AI-connected applications with clear written communication.",
   "experience": [
     {
       "role": "Full-Stack Programmer",
       "company": "POST Inc.",
       "dates": "2025 — Present",
       "bullets": [
-        "Build and maintain ecommerce websites for international clients, primarily in fashion, with a focus on Shopify theme customization and storefront updates.",
-        "Update homepages, product pages, blogs, and content across Shopify, WordPress, Wix, Squarespace, Magento, and Faire. Support live websites through fixes, API integrations, plugins, and routine checks.",
+        "Build and maintain WordPress, CMS-based websites, and Shopify storefronts for international clients, primarily in fashion, through theme customization, page development, and ongoing updates.",
+        "Develop WordPress pages with Elementor and form integrations; update homepages, product pages, blogs, and CMS content across Shopify, Wix, Squarespace, and other platforms. Support live sites through fixes, API integrations, plugins, and routine checks.",
         "Develop custom Shopify apps, AI-connected applications, and internal tools, including a styling recommendation app, HTML Link Generator, and flipbook ordering workflow."
       ]
     },
@@ -51,8 +51,8 @@
       "MySQL, Node.js, REST API integrations"
     ],
     [
-      "Ecommerce & platforms",
-      "Shopify, Shopify themes and apps, WordPress, BigCommerce / Stencil, Wix, Squarespace, Magento, Faire"
+      "WordPress, CMS & ecommerce",
+      "WordPress, Elementor, Contact Form 7, CMS page and content management, Shopify themes and apps, BigCommerce / Stencil, Wix, Squarespace, Magento, Faire"
     ],
     [
       "Apps & AI",

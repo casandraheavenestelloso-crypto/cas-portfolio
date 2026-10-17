@@ -1633,3 +1633,55 @@ html[data-theme="light"] .hero-portrait {
 
 .about-personal .about-copy { min-width:0; }
 .about-personal .about-image img { object-position:center; }
+
+.hero-work-link {
+  color:var(--gray);
+  font-weight:500;
+  text-decoration:underline;
+  text-underline-offset:.3em;
+}
+
+.about-opening-body {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) clamp(280px,28vw,340px);
+  gap:clamp(2rem,5vw,4rem);
+  align-items:start;
+  max-width:100%;
+}
+.about-opening-bio { min-width:0; }
+.about-opening-bio p { color:var(--gray); margin:0 0 1.25rem; max-width:none; }
+.about-opening-bio p:last-child { margin-bottom:0; }
+.about-opening-bio .about-opening-lead { color:var(--white); }
+.about-resume-card {
+  display:flex;
+  flex-direction:column;
+  align-items:stretch;
+  gap:1rem;
+  width:100%;
+}
+.about-resume-card img {
+  width:100%;
+  height:auto;
+  aspect-ratio:3 / 4;
+  object-fit:cover;
+  border:1px solid var(--line);
+  border-radius:.75rem;
+}
+.about-resume-card .button { justify-content:center; }
+.about-resume-actions {
+  display:flex;
+  flex-direction:row;
+  gap:.75rem;
+  width:100%;
+}
+.about-resume-actions .button {
+  flex:1;
+  min-width:0;
+  padding:.8rem .5rem;
+  font-size:.75rem;
+  white-space:nowrap;
+}
+@media (max-width:768px) {
+  .about-opening-body { grid-template-columns:1fr; gap:1.75rem; }
+  .about-resume-card { width:min(100%,340px); }
+}

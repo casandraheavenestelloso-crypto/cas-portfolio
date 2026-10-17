@@ -227,9 +227,25 @@ textarea:focus {
     text-align:left;
   }
 
+  body[data-page="about"] main > .about-opening,
   body[data-page="projects"] .projects-page .page-hero {
     height:auto;
     min-height:0;
+  }
+
+  body[data-page="about"] main > .about-opening {
+    grid-template-columns:minmax(0,1fr) clamp(280px,28vw,340px);
+    column-gap:clamp(2rem,5vw,4rem);
+  }
+  .about-opening > .eyebrow,
+  .about-opening > h1 { grid-column:1; }
+  .about-opening-body { display:contents; }
+  .about-opening-bio { grid-column:1; grid-row:3; }
+  .about-opening .about-resume-card {
+    grid-column:2;
+    grid-row:1 / span 3;
+    align-self:start;
+    margin-top:-1rem;
   }
 
   body:is([data-page="about"], [data-page="projects"]) .page-hero > .eyebrow {
