@@ -1630,3 +1630,6 @@ html[data-theme="light"] .hero-portrait {
     padding:.5rem 0;
   }
 }
+
+.about-personal .about-copy { min-width:0; }
+.about-personal .about-image img { object-position:center; }

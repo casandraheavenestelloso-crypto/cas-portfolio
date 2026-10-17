@@ -1,0 +1,79 @@
+{
+  "name": "Casandra Heaven R. Estelloso",
+  "role": "Full-Stack Web Developer",
+  "location": "Bacolod City, Philippines",
+  "overview": "Full-stack web developer with experience in ecommerce storefronts, custom web applications, and website maintenance. Works across Shopify, WordPress, BigCommerce, Wix, and Squarespace, with hands-on experience in theme customization, API integrations, and AI-connected applications. Combines responsive frontend development, backend programming, and clear written communication to support practical business needs.",
+  "experience": [
+    {
+      "role": "Full-Stack Programmer",
+      "company": "POST Inc.",
+      "dates": "2025 — Present",
+      "bullets": [
+        "Build and maintain ecommerce websites for international clients, primarily in fashion, with a focus on Shopify theme customization and storefront updates.",
+        "Update homepages, product pages, blogs, and content across Shopify, WordPress, Wix, Squarespace, Magento, and Faire. Support live websites through fixes, API integrations, plugins, and routine checks.",
+        "Develop custom Shopify apps, AI-connected applications, and internal tools, including a styling recommendation app, HTML Link Generator, and flipbook ordering workflow."
+      ]
+    },
+    {
+      "role": "Front-end & Back-end Developer · Internship",
+      "company": "The Eastforge Inc.",
+      "dates": "2025",
+      "bullets": [
+        "Worked on Thread & Cupid, a BigCommerce ecommerce website, using the Stencil framework and backend tools.",
+        "Customized themes, improved UI/UX, integrated third-party APIs, and supported product and order functionality."
+      ]
+    },
+    {
+      "role": "Project Manager & Full-Stack Developer",
+      "company": "University of St. La Salle–Bacolod",
+      "dates": "2022 — 2024",
+      "bullets": [
+        "Developed frontend and backend features for CRUD-based web and mobile systems for Spot.Pub Café and Coasing Clothing.",
+        "Coordinated development milestones and team delivery for the Komyuter capstone and Flutter-based VetSync application."
+      ]
+    },
+    {
+      "role": "News Writer & Ascribe Head",
+      "company": "Tigris Publication",
+      "dates": "2023 — 2025",
+      "bullets": [
+        "Contributed news writing and editorial leadership, bringing experience in research, clear communication, and team coordination."
+      ]
+    }
+  ],
+  "skills": [
+    [
+      "Languages & frontend",
+      "HTML, CSS, JavaScript, TypeScript, PHP, Java, React"
+    ],
+    [
+      "Backend & data",
+      "MySQL, Node.js, REST API integrations"
+    ],
+    [
+      "Ecommerce & platforms",
+      "Shopify, Shopify themes and apps, WordPress, BigCommerce / Stencil, Wix, Squarespace, Magento, Faire"
+    ],
+    [
+      "Apps & AI",
+      "Remix, Flutter, GPT API, Gemini API, workflow automation"
+    ],
+    [
+      "Tools & practice",
+      "Git, GitHub, Railway, UI/UX, responsive development, website maintenance, SEO content and writing"
+    ]
+  ],
+  "education": {
+    "degree": "Bachelor of Science in Information Technology",
+    "school": "University of St. La Salle–Bacolod",
+    "dates": "2021 — 2025",
+    "honors": "Magna Cum Laude · Most Outstanding IT Student · Consistent Dean’s Lister"
+  },
+  "awards": [
+    "Best Class Capstone",
+    "Philippine Startup Challenge 8, Region 6 (2023) — Top 12",
+    "The East Forge Inc. / Binary Anvil Internship — Best UI and 3rd Place Best BigCommerce Website",
+    "LCPC 2024 — Champion, Sports Writing (English); Top 4, News Writing (English)",
+    "LCPC 2025 — Promising Writer, Sports Writing (English)"
+  ]
+}

@@ -1,0 +1,51 @@
+/* A continuous, readable document independent of the portfolio's presentation sections. */
+html:has(.resume-page) { scroll-snap-type:none; }
+.resume-page { padding-block:clamp(2.75rem,6vw,5rem); }
+.resume-page > .resume-section {
+  display:block;
+  height:auto;
+  min-height:0;
+  scroll-snap-align:none;
+  scroll-snap-stop:normal;
+}
+.resume-header { display:grid; grid-template-columns:minmax(0,1fr) 180px; gap:2.5rem; align-items:start; }
+.resume-header h1 { font-size:clamp(2.3rem,5vw,4.5rem); line-height:1.08; letter-spacing:-.05em; margin:0 0 1rem; max-width:18ch; }
+.resume-header .eyebrow { margin:0 0 .75rem; }
+.resume-role { font-weight:700; margin:0 0 .5rem; }
+.resume-location { color:var(--gray); margin:0 0 1rem; }
+.resume-photo { width:180px; aspect-ratio:1; object-fit:cover; border-radius:1rem; border:1px solid var(--line); }
+.resume-contact { display:flex; flex-wrap:wrap; gap:.75rem 1.25rem; font-size:.85rem; }
+.resume-contact a { overflow-wrap:anywhere; text-decoration:underline; text-underline-offset:.2em; }
+.resume-contact a:hover { color:var(--pink); }
+.resume-section { border-top:1px solid var(--line); margin-top:2.5rem; padding-top:2rem; }
+.resume-section h2 { font-size:1.1rem; line-height:1.4; letter-spacing:.04em; text-transform:uppercase; margin:0 0 1.25rem; color:var(--pink); }
+.resume-section h3 { font-size:1rem; line-height:1.6; margin:0; }
+.resume-section p, .resume-section li, .resume-section dd { color:var(--gray); font-size:.95rem; line-height:1.8; }
+.resume-section p { margin:.5rem 0 0; }
+.resume-job + .resume-job { margin-top:2rem; }
+.resume-job-heading { display:flex; justify-content:space-between; align-items:baseline; gap:.5rem 2rem; }
+.resume-job-heading h3 { max-width:54ch; }
+.resume-job-heading span { font-weight:400; }
+.resume-job-heading p { margin:0; flex-shrink:0; font-size:.8rem; }
+.resume-section ul { padding-left:1.25rem; margin:.75rem 0 0; }
+.resume-section li + li { margin-top:.5rem; }
+.resume-skills { margin:0; }
+.resume-skills > div { display:grid; grid-template-columns:190px minmax(0,1fr); gap:1.5rem; padding:.65rem 0; }
+.resume-skills dt { font-size:.9rem; font-weight:700; }
+.resume-skills dd { margin:0; }
+@media (max-width:700px) {
+  .resume-header { grid-template-columns:1fr; gap:1.5rem; }
+  .resume-photo { grid-row:1; width:120px; }
+  .resume-job-heading { flex-direction:column; gap:.25rem; }
+  .resume-skills > div { grid-template-columns:1fr; gap:.25rem; }
+  .resume-header .button-row { gap:.75rem; }
+}
+@media print {
+  html, body { background:white !important; color:#171717 !important; }
+  .site-header, .site-footer, .skip-link, .nav-backdrop, .resume-header .button-row { display:none !important; }
+  .resume-page { width:100%; padding:0; }
+  .resume-section h2 { color:#171717; }
+  .resume-section p, .resume-section li, .resume-section dd, .resume-location { color:#333; }
+  .resume-job, .resume-skills > div { break-inside:avoid; }
+  .resume-section h2 { break-after:avoid; }
+}

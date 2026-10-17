@@ -545,6 +545,19 @@ document.addEventListener('DOMContentLoaded', () => {
   const form = document.querySelector('.contact-form');
 
   if (form) {
+    const message = form.elements.namedItem('message');
+    if (message) {
+      // Textarea indentation is content; also normalize values restored by the browser.
+      if (!message.defaultValue.trim()) {
+        message.defaultValue = '';
+        message.value = message.value.trimStart();
+      }
+      const clearBlankMessage = () => {
+        if (message.value && !message.value.trim()) message.value = '';
+      };
+      message.addEventListener('focus', clearBlankMessage);
+      window.addEventListener('pageshow', clearBlankMessage);
+    }
     let isSubmitting = false;
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
