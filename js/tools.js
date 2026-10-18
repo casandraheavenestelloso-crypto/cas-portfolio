@@ -5,28 +5,28 @@ const toolGroups = [
     description: 'Search visibility, measurement, forms, scheduling, and customer communication.',
     tools: [
       ['Technical SEO', 'fa-solid fa-magnifying-glass-chart'], ['GEO', 'fa-solid fa-earth-americas'],
-      ['Google Tag Manager', 'fa-solid fa-tags', 'GTM'], ['Google Analytics', 'fa-solid fa-chart-line', 'GA'],
-      ['Klaviyo', '', 'K'], ['MailerLite', '', 'M'], ['Web3Forms', 'fa-solid fa-file-lines'], ['Calendly', 'fa-solid fa-calendar-days'],
-      ['SMTP', 'fa-solid fa-server'], ['Mailgun', 'fa-solid fa-paper-plane', 'M'],
+      ['Google Tag Manager', '', '', 'pink/google-tag-manager.svg'], ['Google Analytics', '', '', 'pink/google-analytics.svg'],
+      ['Klaviyo', '', '', 'pink/klaviyo.svg'], ['MailerLite', '', '', 'pink/MailerLite_Logo.svg'], ['Web3Forms', '', '', 'pink/web3forms-mark.svg'], ['Calendly', '', '', 'pink/calendly.svg'],
+      ['SMTP', 'fa-solid fa-server'], ['Mailgun', '', '', 'pink/mailgun.svg'],
     ],
   },
   {
     id: 'automation', label: 'Automation & AI',
     description: 'Connected workflows and AI-assisted development.',
     tools: [
-      ['n8n', 'fa-solid fa-diagram-project'], ['Google Apps Script', 'fa-solid fa-scroll', 'GAS'],
-      ['Google AppSheet', 'fa-solid fa-table-cells-large', 'GA'], ['ChatGPT', 'fa-solid fa-comment-dots', 'C'],
-      ['Claude Code', 'fa-solid fa-code', 'CC'], ['Claude Cowork', 'fa-solid fa-people-group', 'CC'], ['Codex', 'fa-solid fa-terminal', 'C'],
-      ['Manus AI', 'fa-solid fa-robot', 'M'], ['Google Flow', 'fa-solid fa-wand-magic-sparkles', 'GF'], ['Higgsfield', 'fa-solid fa-wand-magic-sparkles', 'H'],
+      ['n8n', '', '', 'pink/n8n.svg'], ['Google Apps Script', '', '', 'pink/google-apps-script.svg'],
+      ['Google AppSheet', '', '', 'pink/google app sheet.svg'], ['OpenAI', '', '', 'pink/openai.svg'],
+      ['Anthropic', '', '', 'pink/anthropic.svg'], ['Codex', '', '', 'pink/codex.svg'],
+      ['Manus AI', '', '', 'pink/manus-ai.svg'], ['Google Flow', '', '', 'pink/google-flow.svg'], ['Higgsfield', '', '', 'pink/higgsfield.svg'],
     ],
   },
   {
     id: 'infrastructure', label: 'Hosting & Infrastructure',
     description: 'Version control, deployment, cloud services, hosting, and protection.',
     tools: [
-      ['Cloudflare', 'fa-solid fa-cloud', 'C'], ['GitHub', 'fa-brands fa-github'], ['Vercel', 'fa-solid fa-play', 'V'],
-      ['Heroku', 'fa-solid fa-h', 'H'], ['DigitalOcean / Droplets', 'fa-solid fa-droplet', 'DO'], ['Railway', 'fa-solid fa-train-subway', 'R'],
-      ['Render', 'fa-solid fa-server', 'R'], ['Firebase', 'fa-solid fa-fire', 'F'], ['GoDaddy', 'fa-solid fa-globe', 'G'],
+      ['Cloudflare', '', '', 'pink/cloudflare.svg'], ['GitHub', 'fa-brands fa-github'], ['Vercel', '', '', 'pink/vercel.svg'],
+      ['Heroku', '', '', 'pink/heroku.svg'], ['DigitalOcean / Droplets', '', '', 'pink/digitalocean.svg'], ['Railway', '', '', 'pink/railway.svg'],
+      ['Render', '', '', 'pink/render.svg'], ['Firebase', '', '', 'pink/firebase.svg'], ['GoDaddy', '', '', 'pink/godaddy.svg'],
     ],
   },
 ];
@@ -35,9 +35,9 @@ const toolSection = document.querySelector('#tools-section');
 const tabs = document.querySelector('#tool-category-tabs');
 const panels = document.querySelector('#tool-groups');
 
-const makeTool = ([name, icon, fallback]) => (
+const makeTool = ([name, icon, fallback, image]) => (
   '<div class="tool-logo" role="img" tabindex="0" aria-label="' + name + '">' +
-    (icon ? '<i class="' + icon + '" aria-hidden="true"></i>' : '<span class="tool-monogram" aria-hidden="true">' + fallback + '</span>') +
+    (image ? '<img class="tool-image' + (image === 'pink/MailerLite_Logo.svg' ? ' tool-image-wordmark' : '') + '" src="assets/images/platforms/' + image.split('/').map(encodeURIComponent).join('/') + '" alt="" aria-hidden="true" width="44" height="44">' : icon ? '<i class="' + icon + '" aria-hidden="true"></i>' : '<span class="tool-monogram" aria-hidden="true">' + fallback + '</span>') +
     '<span class="tool-label" aria-hidden="true">' + name + '</span><span class="sr-only">' + name + '</span></div>'
 );
 

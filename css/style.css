@@ -822,6 +822,18 @@ h1 span,h2 span {
   font-size:clamp(1.8rem,3vw,2.7rem);
   transition:transform .25s
 }
+.tool-image {
+  width:clamp(1.8rem,3vw,2.7rem);
+  height:clamp(1.8rem,3vw,2.7rem);
+  display:block;
+  object-fit:contain;
+  transition:transform .25s;
+}
+.tool-image-wordmark {
+  width:72px;
+  max-width:none;
+  filter:none;
+}
 .tool-monogram {
   align-items:center;
   border:1px solid var(--pink);
@@ -860,6 +872,8 @@ h1 span,h2 span {
 }
 .tool-list div:hover i,
 .tool-list div:focus-visible i,
+.tool-list div:hover .tool-image,
+.tool-list div:focus-visible .tool-image,
 .tool-list div:hover .tool-monogram,
 .tool-list div:focus-visible .tool-monogram {
   transform:scale(1.08)
@@ -1193,7 +1207,6 @@ h1 span,h2 span {
 .brand-repeat .icon-bigcommerce,
 .brand-repeat .icon-squarespace,
 .brand-repeat .icon-faire {
-  filter:brightness(0) invert(1);
 }
 
 html[data-theme="light"] .brand-repeat .icon-bigcommerce,
