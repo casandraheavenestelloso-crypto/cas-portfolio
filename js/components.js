@@ -29,6 +29,17 @@
     '</nav></header>',
   ].join(''));
 
+  document.body.insertAdjacentHTML('beforeend', [
+    '<a class="chibi-contact" href="contact.html" aria-label="Contact Casandra">',
+    '<span class="chibi-message">Let’s connect!</span>',
+    '<img src="assets/images/cas-chibi-animation.gif" alt="" decoding="async">',
+    '</a>',
+  ].join(''));
+  const chibiImage = document.querySelector('.chibi-contact img');
+  const revealChibi = () => chibiImage.parentElement.classList.add('is-ready');
+  if (chibiImage.complete && chibiImage.naturalWidth) revealChibi();
+  else chibiImage.addEventListener('load', revealChibi, { once:true });
+
   const themeToggle = document.querySelector('.theme-toggle');
   const savedTheme = localStorage.getItem('portfolio-theme');
   const prefersLight = globalThis.matchMedia?.('(prefers-color-scheme: light)').matches;

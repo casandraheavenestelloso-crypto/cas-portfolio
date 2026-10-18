@@ -234,7 +234,7 @@ textarea:focus {
   }
 
   body[data-page="about"] main > .about-opening {
-    grid-template-columns:minmax(0,1fr) clamp(280px,28vw,340px);
+    grid-template-columns:minmax(0,1fr) clamp(310px,32vw,400px);
     grid-template-rows:min-content min-content minmax(0,1fr);
     min-height:calc(100svh - var(--header-offset));
     padding-bottom:clamp(4rem,12svh,8rem);
