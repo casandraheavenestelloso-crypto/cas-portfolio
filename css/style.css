@@ -1204,9 +1204,9 @@ h1 span,h2 span {
   transition:transform .25s ease;
 }
 
-.brand-repeat .icon-bigcommerce,
 .brand-repeat .icon-squarespace,
 .brand-repeat .icon-faire {
+  filter:brightness(0) invert(1);
 }
 
 html[data-theme="light"] .brand-repeat .icon-bigcommerce,
