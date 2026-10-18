@@ -489,7 +489,7 @@ textarea:focus {
 @media (max-width:768px) {
   html { scroll-padding-top:var(--header-offset,76px); }
   .about-opening-body { gap:2rem; }
-  .about-resume-card { justify-self:center; }
+  .about-resume-card { order:-1; justify-self:center; }
   .about-cta-container { padding-block:var(--space); }
   .about-cta { width:100%; }
   .footer-grid > * { min-width:0; }
