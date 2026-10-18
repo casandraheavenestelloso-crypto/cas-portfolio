@@ -1670,7 +1670,6 @@ html[data-theme="light"] .hero-portrait {
   height:auto;
   aspect-ratio:3 / 4;
   object-fit:cover;
-  border:1px solid var(--line);
   border-radius:.75rem;
 }
 .about-resume-card .button { justify-content:center; }
