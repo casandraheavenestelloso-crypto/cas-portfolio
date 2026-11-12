@@ -1776,3 +1776,6 @@ html[data-theme="light"] .about-resume-card .about-portrait img {
   .about-opening-body { grid-template-columns:1fr; gap:1.75rem; }
   .about-resume-card { width:min(100%,400px); }
 }
+
+/* Embedded project walkthroughs. */
+.drive-video{width:100%;aspect-ratio:16/9;border:0;border-radius:16px;background:#151217}

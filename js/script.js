@@ -1,5 +1,5 @@
 /* Shared navigation, carousel, reveal, disclosure, and form interactions. */
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   // Keep one-screen sections aligned to the visible space below the sticky navigation.
   const syncHeaderHeight = () => {
     const header = document.querySelector('.site-header');
@@ -83,7 +83,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  const projects = window.PROJECTS || [];
+  let rawProjects = window.PROJECTS || [];
+  if (window.ProjectStore && location.protocol !== 'file:' && document.querySelector('[data-projects-grid], [data-project-detail], [data-featured-carousel]')) {
+    try { rawProjects = await window.ProjectStore.load(); }
+    catch { /* Preserve the original portfolio when storage is unavailable. */ }
+  }
+  // Project text is plain text, including strings interpolated into HTML attributes.
+  const escape = value => String(value).replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
+  const htmlSafe = value => typeof value === 'string' ? escape(value) : Array.isArray(value) ? value.map(htmlSafe) : value && typeof value === 'object' ? Object.fromEntries(Object.entries(value).map(([key, item]) => [key, htmlSafe(item)])) : value;
+  const plain = value => String(value || '').replace(/&(amp|lt|gt|quot|#39);/g, entity => ({ '&amp;': '&', '&lt;': '<', '&gt;': '>', '&quot;': '"', '&#39;': "'" }[entity]));
+  const projects = rawProjects.map(htmlSafe);
   const projectLink = (slug) => 'project.html?project=' + encodeURIComponent(slug);
   const renderTags = (tags = []) => tags.map((tag) => '<span>' + tag + '</span>').join('');
   const renderProjectMedia = (project, isDetail = false) => {
@@ -121,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const project = projects.find((item) => item.slug === slug || item.aliases?.includes(slug));
 
     if (project) {
-      document.title = project.title + ' - CAS';
+      document.title = (rawProjects.find(item => item.slug === project.slug)?.title || 'Project') + ' - CAS';
       const isMobileScreenshot = (item) => /mobile/i.test(item.caption || '') || /mobile/i.test(item.alt || '') || item.height > item.width;
       const gallery = (project.gallery || [])
         .filter((item) => decodeURIComponent(item.src) !== decodeURIComponent(project.mediaUrl || ''))
@@ -151,13 +160,14 @@ document.addEventListener('DOMContentLoaded', () => {
               '<button type="button" data-thumbnail-index="' + index + '" aria-label="Show ' + item.alt + '"><img src="' + item.src + '" alt="" loading="lazy"></button>'
             ).join('') + '</div></div>'
           : '',
+        project.driveVideoUrl ? '<div class="project-demo"><h2>Video walkthrough</h2><iframe class="drive-video" src="' + project.driveVideoUrl + '" title="' + project.title + ' video walkthrough" allow="fullscreen" allowfullscreen loading="lazy" referrerpolicy="no-referrer"></iframe></div>' : '',
         project.demoUrl ? '<div class="project-demo"><h2>App demo</h2><video src="' + project.demoUrl + '" poster="' + project.mediaUrl + '" controls playsinline preload="metadata" aria-label="' + project.title + ' app demonstration"></video></div>' : '',
         '</section>',
       ].join('');
       if (gallery.length) {
         const viewer = document.createElement('dialog');
         viewer.className = 'gallery-viewer';
-        viewer.setAttribute('aria-label', project.title + ' image gallery');
+        viewer.setAttribute('aria-label', plain(project.title) + ' image gallery');
         viewer.innerHTML = '<div class="gallery-viewer-panel">' +
           '<button type="button" class="gallery-close" aria-label="Close gallery" autofocus><span aria-hidden="true">×</span></button>' +
           '<img class="gallery-zoom-image" alt="">' +
@@ -171,17 +181,17 @@ document.addEventListener('DOMContentLoaded', () => {
           activeImage = (index + gallery.length) % gallery.length;
           const item = gallery[activeImage];
           const image = viewer.querySelector('img');
-          image.src = item.src;
-          image.alt = item.alt;
+          image.src = plain(item.src);
+          image.alt = plain(item.alt);
           const stageImage = projectDetail.querySelector('.gallery-stage-preview img');
-          stageImage.src = item.src;
-          stageImage.alt = item.alt;
-          projectDetail.querySelector('.gallery-stage-preview').setAttribute('aria-label', 'Zoom ' + item.alt);
-          projectDetail.querySelector('.gallery-stage-caption').textContent = item.caption + ' · ' + (activeImage + 1) + ' / ' + gallery.length;
+          stageImage.src = plain(item.src);
+          stageImage.alt = plain(item.alt);
+          projectDetail.querySelector('.gallery-stage-preview').setAttribute('aria-label', 'Zoom ' + plain(item.alt));
+          projectDetail.querySelector('.gallery-stage-caption').textContent = plain(item.caption) + ' · ' + (activeImage + 1) + ' / ' + gallery.length;
           projectDetail.querySelectorAll('[data-thumbnail-index]').forEach((button) => {
             button.setAttribute('aria-pressed', String(Number(button.dataset.thumbnailIndex) === activeImage));
           });
-          viewer.querySelector('p').textContent = item.caption + ' · ' + (activeImage + 1) + ' / ' + gallery.length;
+          viewer.querySelector('p').textContent = plain(item.caption) + ' · ' + (activeImage + 1) + ' / ' + gallery.length;
         };
         const galleryCarousel = projectDetail.querySelector('.project-gallery-carousel');
         galleryCarousel.querySelector('[data-stage-back]').addEventListener('click', () => showImage(activeImage - 1));
@@ -314,7 +324,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const carousel = document.querySelector('.carousel');
 
-  if (carousel) {
+  if (carousel && carousel.querySelector('.project-card')) {
     const track = carousel.querySelector('.carousel-track');
     const originalCards = [...carousel.querySelectorAll('.project-card')];
     const carouselWindow = carousel.querySelector('.carousel-window');

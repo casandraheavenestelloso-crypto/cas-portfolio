@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow"><title>Project Studio — CAS</title>
+  <link rel="stylesheet" href="css/style.css?v=94"><link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+  <main class="studio">
+    <header class="studio-header"><a class="brand" href="index.html">CAS</a><span>Project Studio</span><a href="projects.html" target="_blank" rel="noopener">View portfolio ↗</a><button id="logout" hidden>Sign out</button></header>
+    <p id="feedback" role="status" aria-live="polite"></p>
+    <section id="login-panel" class="panel login-panel">
+      <p class="eyebrow">Your creative workspace</p><h1>Welcome back.</h1><p>Sign in to manage your portfolio projects.</p>
+      <form id="login-form"><label>Username<input name="username" autocomplete="username" required maxlength="160"></label><label>Password<input name="password" type="password" autocomplete="current-password" required maxlength="1024"></label><button class="button" type="submit">Sign in</button></form>
+    </section>
+    <section id="workspace" hidden>
+      <div class="studio-heading"><div><p class="eyebrow">Portfolio management</p><h1>Your projects.</h1></div><button id="new-project" class="button">+ New project</button></div>
+      <div class="studio-layout">
+        <aside class="panel"><h2>All projects</h2><div id="project-list"></div></aside>
+        <section class="panel editor"><h2 id="editor-title">New project</h2>
+          <form id="project-form">
+            <div class="two-columns"><label>Project title<input name="title" required maxlength="160"></label><label>Page slug<input name="slug" required pattern="[a-z0-9]+(-[a-z0-9]+)*" maxlength="100" placeholder="my-new-project"><small>Used in the project link; fixed after publishing.</small></label></div>
+            <label>Category<input name="category" required maxlength="160" placeholder="Shopify · Fashion Website"></label>
+            <label>Short description<textarea name="description" required maxlength="1000" rows="3"></textarea></label>
+            <label>Full description<textarea name="longDescription" maxlength="12000" rows="5"></textarea></label>
+            <label>Additional details<textarea name="details" rows="5" placeholder="Separate paragraphs with a blank line"></textarea><small>Optional sections: How it works, Who it helps, Technology and hosting.</small></label>
+            <div class="two-columns"><label>Project website<input name="projectUrl" type="url" placeholder="https://example.com"></label><label>Tags<input name="tags" placeholder="Shopify, Design, Development"><small>Separate tags with commas.</small></label></div>
+            <label>Google Drive video link<input name="driveVideoUrl" type="url" placeholder="https://drive.google.com/file/d/FILE_ID/view"><small>Set the video’s Drive access to “Anyone with the link” so visitors can play it.</small></label>
+            <label>Direct video URL (optional)<input name="demoUrl" placeholder="https://example.com/demo.mp4"><small>Existing locally hosted demo videos are preserved.</small></label>
+            <label class="checkbox"><input name="featured" type="checkbox" aria-describedby="featured-help"> Highlight on homepage</label>
+            <p id="featured-help"><small>Check this to include the project in the homepage carousel. Unchecked projects still appear on the Projects page. Click Publish project to save your choice.</small></p>
+            <fieldset><legend>Cover image</legend><label>Upload cover<input id="cover-file" type="file" accept="image/png,image/jpeg,image/webp,image/gif"></label><small>PNG, JPEG, WebP, or GIF · up to 3 MB each. Images are public after upload.</small><div id="cover-preview"></div></fieldset>
+            <fieldset><legend>Screenshots</legend><label>Add screenshots<input id="gallery-files" type="file" multiple accept="image/png,image/jpeg,image/webp,image/gif"></label><small>Up to 30 images. Edit captions and alternative text below.</small><div id="gallery-editor"></div></fieldset>
+            <div class="editor-actions"><button class="button" type="submit">Publish project</button><a id="preview-project" target="_blank" rel="noopener" hidden>Open project ↗</a><button id="delete-project" type="button" class="danger" hidden>Delete project</button></div>
+          </form>
+        </section>
+      </div>
+    </section>
+  </main>
+  <script src="js/projects-data.js?v=47"></script><script src="js/project-store.js"></script><script src="js/admin.js"></script>
+</body>
+</html>
